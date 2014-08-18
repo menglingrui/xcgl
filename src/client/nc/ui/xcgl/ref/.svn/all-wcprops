@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3461/trunk/xcgl/src/client/nc/ui/xcgl/ref
+END
+QualityGradeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2936/trunk/xcgl/src/client/nc/ui/xcgl/ref/QualityGradeRefModel.java
+END
+BeltlineRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1590/trunk/xcgl/src/client/nc/ui/xcgl/ref/BeltlineRefModel.java
+END
+CtExpSetRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/3455/trunk/xcgl/src/client/nc/ui/xcgl/ref/CtExpSetRefModel.java
+END
+CtTermtypeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/3402/trunk/xcgl/src/client/nc/ui/xcgl/ref/CtTermtypeRefModel.java
+END
+ResetypeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2777/trunk/xcgl/src/client/nc/ui/xcgl/ref/ResetypeRefModel.java
+END
+InOuttypeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3200/trunk/xcgl/src/client/nc/ui/xcgl/ref/InOuttypeRefModel.java
+END
+ClassorderRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1590/trunk/xcgl/src/client/nc/ui/xcgl/ref/ClassorderRefModel.java
+END
+LabIndexSetRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1267/trunk/xcgl/src/client/nc/ui/xcgl/ref/LabIndexSetRefModel.java
+END
+TeamGroupRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1267/trunk/xcgl/src/client/nc/ui/xcgl/ref/TeamGroupRefModel.java
+END
+BaseManage.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/3217/trunk/xcgl/src/client/nc/ui/xcgl/ref/BaseManage.java
+END
+FactoryRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1590/trunk/xcgl/src/client/nc/ui/xcgl/ref/FactoryRefModel.java
+END
+EquipmentRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1267/trunk/xcgl/src/client/nc/ui/xcgl/ref/EquipmentRefModel.java
+END
+CtTypeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3402/trunk/xcgl/src/client/nc/ui/xcgl/ref/CtTypeRefModel.java
+END
+OuttypeRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1633/trunk/xcgl/src/client/nc/ui/xcgl/ref/OuttypeRefModel.java
+END
+QualityProRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/3265/trunk/xcgl/src/client/nc/ui/xcgl/ref/QualityProRefModel.java
+END
+CtTermSetRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3461/trunk/xcgl/src/client/nc/ui/xcgl/ref/CtTermSetRefModel.java
+END
+QualityPriceRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2936/trunk/xcgl/src/client/nc/ui/xcgl/ref/QualityPriceRefModel.java
+END
+TechnologyRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1576/trunk/xcgl/src/client/nc/ui/xcgl/ref/TechnologyRefModel.java
+END
+ProcessRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1585/trunk/xcgl/src/client/nc/ui/xcgl/ref/ProcessRefModel.java
+END
+VehicleRefModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1991/trunk/xcgl/src/client/nc/ui/xcgl/ref/VehicleRefModel.java
+END

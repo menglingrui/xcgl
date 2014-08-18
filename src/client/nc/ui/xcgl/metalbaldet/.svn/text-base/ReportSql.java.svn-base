@@ -1,0 +1,57 @@
+package nc.ui.xcgl.metalbaldet;
+
+import nc.ui.pub.ClientEnvironment;
+
+/**
+ * 金属平衡明细
+ * 
+ * @author Jay
+ * 
+ */
+public class ReportSql {
+	/**
+	 * 查询过磅登记和销售过磅登记
+	 * 
+	 * @param whereSql
+	 * @return
+	 */
+	public static String getBusinessSql1(String whereSql) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("select  xcgl_flouryield_h.dbilldate,");
+		sb.append("xcgl_flouryield_h.pk_factory,");
+		sb.append("xcgl_flouryield_h.pk_beltline,");
+		sb.append("xcgl_flouryield_h.pk_classorder,");
+		sb.append("xcgl_flouryield_b.pk_stordoc,");
+		sb.append("xcgl_flouryield_b.pk_deptdoc,");
+		sb.append("xcgl_flouryield_b.pk_invmandoc,");
+		sb.append("xcgl_flouryield_b.pk_invbasdoc,");
+		sb.append("xcgl_flouryield_b.pk_manindex,");
+		sb.append("xcgl_flouryield_b.pk_invindex,");
+		sb.append("xcgl_flouryield_b.ncrudes,");
+		sb.append("xcgl_flouryield_b.ncrudescontent,");
+		sb.append("xcgl_flouryield_b.nrecover,");
+		sb.append("xcgl_flouryield_b.nmetalamount ");
+		//sb.append("xcgl_flouryield_b.pk_vehicle ");
+		// sb.append("b.ndryweight,");
+		// sb.append("b.nlock,");
+		// sb.append("b.crowno,");
+		// sb.append("b.pk_father,");
+		// sb.append("b.vcrowno,");
+		// sb.append("b.vlastbilltype, ");
+		// sb.append("b.vlastbillcode, ");
+		// sb.append("b.vsourcebilltype, ");
+		// sb.append("b.csourcebillcode ");
+		sb.append("from xcgl_flouryield_h  ,xcgl_flouryield_b ");
+		sb.append("where xcgl_flouryield_h.pk_flouryield_h =xcgl_flouryield_b.pk_flouryield_h ");
+		// sb.append("and nvl(xcgl_weighdoc.dr,0)=0 ");
+		// sb.append("and nvl(xcgl_weighdoc_b.dr,0)=0 ");
+		if (whereSql != null && whereSql.length() > 0) {
+			sb.append(" and ");
+			sb.append(whereSql);
+		}
+		sb.append("and xcgl_flouryield_h.pk_corp='"
+				+ ClientEnvironment.getInstance().getCorporation()
+						.getPrimaryKey() + "'");
+		return sb.toString();
+	}
+}

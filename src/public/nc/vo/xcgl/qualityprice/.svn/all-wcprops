@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3596/trunk/xcgl/src/public/nc/vo/xcgl/qualityprice
+END
+AggQualityPriceVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2732/trunk/xcgl/src/public/nc/vo/xcgl/qualityprice/AggQualityPriceVO.java
+END
+QualityPriceBVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3384/trunk/xcgl/src/public/nc/vo/xcgl/qualityprice/QualityPriceBVO.java
+END
+QualityPriceHVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3383/trunk/xcgl/src/public/nc/vo/xcgl/qualityprice/QualityPriceHVO.java
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3930/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc
+END
+EventHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/3930/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/EventHandler.java
+END
+Controller.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3204/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/Controller.java
+END
+BillReferQuery30ToXC25.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3199/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/BillReferQuery30ToXC25.java
+END
+ICBillSourceDlg.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3207/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/ICBillSourceDlg.java
+END
+SaleOrderQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3199/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/SaleOrderQuery.java
+END
+ClientUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3928/trunk/xcgl/src/client/nc/ui/xcgl/saleweighdoc/ClientUI.java
+END

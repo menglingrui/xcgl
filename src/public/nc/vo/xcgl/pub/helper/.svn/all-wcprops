@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3962/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper
+END
+CalProduceHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2825/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/CalProduceHelper.java
+END
+StockHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2169/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/StockHelper.java
+END
+StockModHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2254/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/StockModHelper.java
+END
+QueryHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/3962/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/QueryHelper.java
+END
+IndexResultHeler.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3068/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/IndexResultHeler.java
+END
+IndexFineHeler.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2981/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/IndexFineHeler.java
+END
+MonthCloseHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2476/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/MonthCloseHelper.java
+END
+ProduceSetHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3740/trunk/xcgl/src/public/nc/vo/xcgl/pub/helper/ProduceSetHelper.java
+END

@@ -1,0 +1,24 @@
+package nc.ui.xcgl.metalbalance;
+
+public class ReportSql {
+
+	public static String getBusinessSql(String whereSql){
+		StringBuffer sb=new StringBuffer();
+		sb.append("select(xcgl_flouryield_b.pk_invmandoc) ,xcgl_flouryield_b.pk_invindex,sum(xcgl_flouryield_b.ncrudes) ncrudes ,");
+		
+		sb.append(" sum(xcgl_flouryield_b.noutput) noutput,");
+	
+		sb.append(" sum(xcgl_flouryield_b.nmetalamount) nmetalamount");
+
+		sb.append(" from xcgl_flouryield_b join xcgl_flouryield_h " +
+				"on xcgl_flouryield_b.pk_flouryield_h=xcgl_flouryield_h.pk_flouryield_h");
+		
+		sb.append(" where isnull(xcgl_flouryield_b.dr,0)=0 ");
+
+		if(whereSql!=null&&whereSql.length()>0){
+			sb.append(" and ");
+			sb.append(whereSql);
+		}
+		return sb.toString();
+	}
+}

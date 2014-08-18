@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/3959/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill
+END
+XCExtQueryUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1738/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCExtQueryUI.java
+END
+XCMBillSourceDLG.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1475/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCMBillSourceDLG.java
+END
+XCMutiDefBillManageUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2767/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCMutiDefBillManageUI.java
+END
+XCDefBillManageUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3584/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCDefBillManageUI.java
+END
+XCSonDefBillManageUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1475/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCSonDefBillManageUI.java
+END
+XCMBillSourceDLG2.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1475/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCMBillSourceDLG2.java
+END
+XCSonExtDefBillManageUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/1738/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCSonExtDefBillManageUI.java
+END
+XCBillCardUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1475/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCBillCardUI.java
+END
+XCSingleBodyEventHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/1475/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCSingleBodyEventHandler.java
+END
+XCBillQueryDlg.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2027/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCBillQueryDlg.java
+END
+XCFlowManageEventHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/3959/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCFlowManageEventHandler.java
+END
+XCExtFlowManageEventHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2047/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCExtFlowManageEventHandler.java
+END
+XCSonExtBusinessDelegator.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1738/trunk/xcgl/src/client/nc/ui/xcgl/pub/bill/XCSonExtBusinessDelegator.java
+END

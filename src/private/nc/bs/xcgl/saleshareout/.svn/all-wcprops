@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3979/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout
+END
+FindGradeBySource.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3708/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout/FindGradeBySource.java
+END
+QueryData.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3513/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout/QueryData.java
+END
+SaleShareoutBO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3979/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout/SaleShareoutBO.java
+END
+SaveData.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/3709/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout/SaveData.java
+END
+PlanSolutionBO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3709/trunk/xcgl/src/private/nc/bs/xcgl/saleshareout/PlanSolutionBO.java
+END

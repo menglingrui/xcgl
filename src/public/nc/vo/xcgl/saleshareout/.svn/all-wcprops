@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3972/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout
+END
+ShareHVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3576/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout/ShareHVO.java
+END
+AggSaleShareoutVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2266/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout/AggSaleShareoutVO.java
+END
+SaleShareoutBVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3972/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout/SaleShareoutBVO.java
+END
+SaleShareoutBBVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3572/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout/SaleShareoutBBVO.java
+END
+SaleShareoutHVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2266/trunk/xcgl/src/public/nc/vo/xcgl/saleshareout/SaleShareoutHVO.java
+END

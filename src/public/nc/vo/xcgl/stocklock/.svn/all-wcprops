@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2513/trunk/xcgl/src/public/nc/vo/xcgl/stocklock
+END
+AggStocklockVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1486/trunk/xcgl/src/public/nc/vo/xcgl/stocklock/AggStocklockVO.java
+END
+StocklockBVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2513/trunk/xcgl/src/public/nc/vo/xcgl/stocklock/StocklockBVO.java
+END
+StocklockHVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1465/trunk/xcgl/src/public/nc/vo/xcgl/stocklock/StocklockHVO.java
+END

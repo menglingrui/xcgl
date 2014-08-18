@@ -1,0 +1,60 @@
+package nc.vo.xcgl.pub.consts;
+
+import nc.bs.framework.common.RuntimeEnv;
+
+/**
+ * 其他公共常量
+ * 
+ * @author mlr
+ */
+public class PubOtherConst {
+	/**
+	 * 模块名字
+	 */
+	public static String module = "xcgl";
+	/**
+	 * 送样加密密码
+	 */
+	public static String password = "ufida1234567@!3456qur";
+	/**
+	 * 日志文件名字
+	 */
+	public static String loggername = "xcgl";
+	/**
+	 * NCHOME根目录路径
+	 */
+	public static String NCHOME = RuntimeEnv.getInstance().getNCHome();
+	/**
+	 * 生产流程设置缓存标示
+	 */
+	public static String proset_cache=module+"01";
+	/**
+	 * 化验指标定义缓存标示
+	 */
+	public static String labindex_cache=module+"02";
+	/**
+	 * 缓存是否已经执行标志
+	 */
+	public static String isquery_cache="isExeQuery";
+	/**
+	 * 化验结果缓存标示 
+	 */
+	public static String indexresult_cache=module+"03";
+	/**
+	 * 部门缓存标示
+	 */
+	public static String minarea_cache=module+"04";
+	
+	/**
+	 * g/t pk
+	 */
+	public static String pk_labgrade_ag="0001A11000000000X47C";
+	/**
+	 *  %  pk
+	 */
+	public static String pk_labgrade_other="0001A11000000000X47B";
+	
+	public static String currency_rmb="00010000000000000001";
+	
+	
+}

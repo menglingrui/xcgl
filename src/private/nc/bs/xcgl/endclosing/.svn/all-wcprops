@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/3148/trunk/xcgl/src/private/nc/bs/xcgl/endclosing
+END
+ClosingFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2377/trunk/xcgl/src/private/nc/bs/xcgl/endclosing/ClosingFilter.java
+END
+EndClosingDMO.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2422/trunk/xcgl/src/private/nc/bs/xcgl/endclosing/EndClosingDMO.java
+END
+EndClosingBO.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3148/trunk/xcgl/src/private/nc/bs/xcgl/endclosing/EndClosingBO.java
+END
+CancelClosingFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2377/trunk/xcgl/src/private/nc/bs/xcgl/endclosing/CancelClosingFilter.java
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2393/trunk/xcgl/src/public/nc/vo/xcgl/saleout
+END
+AggSaleOutVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1401/trunk/xcgl/src/public/nc/vo/xcgl/saleout/AggSaleOutVO.java
+END
+GenSaleOutHVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2393/trunk/xcgl/src/public/nc/vo/xcgl/saleout/GenSaleOutHVO.java
+END
+GenSaleOutBVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2393/trunk/xcgl/src/public/nc/vo/xcgl/saleout/GenSaleOutBVO.java
+END
