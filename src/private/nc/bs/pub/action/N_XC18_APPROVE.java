@@ -58,11 +58,13 @@ public class N_XC18_APPROVE extends AbstractCompiler2 {
 			retObj = runClass("nc.bs.xcgl.pub.HYBillApprove", "approveHYBill",
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
-			// **自动生成供应链其他入库单**##########yangtao
-//			AutoIcBillBO icbo=new AutoIcBillBO();
-//			
-//		
-//			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "46", false, true, false);
+			//======================================================
+			//生成供应链其他入库单
+		    //供应链其他入库单单据类型 4A
+			AutoIcBillBO icbo=new AutoIcBillBO();
+			
+			
+			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4A", false, true, false);
 			//======================================================
 			return retObj;
 		} catch (Exception ex) {

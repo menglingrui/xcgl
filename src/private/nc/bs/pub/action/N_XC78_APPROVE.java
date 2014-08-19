@@ -5,13 +5,16 @@ import nc.bs.dao.BaseDAO;
 import nc.bs.pub.compiler.AbstractCompiler2;
 import nc.bs.pub.compiler.IWorkFlowRet;
 import nc.bs.xcgl.gravity.GravityBO;
+import nc.bs.zmpub.autoicbill.AutoIcBillBO;
 import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.SuperVO;
 import nc.vo.pub.compiler.PfParameterVO;
 import nc.vo.scm.pu.PuPubVO;
+import nc.vo.trade.pub.HYBillVO;
 import nc.vo.trade.pub.IBillStatus;
 import nc.vo.uap.pf.PFBusinessException;
+import nc.vo.xcgl.pub.tool.XcPubTool;
 /**
  * 重选入库单
  * @author jay
@@ -59,6 +62,14 @@ public class N_XC78_APPROVE extends AbstractCompiler2 {
 			retObj = runClass("nc.bs.xcgl.pub.HYBillApprove", "approveHYBill",
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
+			//======================================================
+			//生成供应链其他入库单
+		    //供应链其他入库单单据类型 4A
+			AutoIcBillBO icbo=new AutoIcBillBO();
+			
+			
+			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4A", false, true, false);
+			//======================================================
 			
 			return retObj;
 		} catch (Exception ex) {

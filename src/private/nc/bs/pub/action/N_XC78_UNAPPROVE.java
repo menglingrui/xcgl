@@ -3,9 +3,10 @@ package nc.bs.pub.action;
 import java.util.Hashtable;
 
 import nc.bs.pub.compiler.AbstractCompiler2;
-
+import nc.bs.zmpub.autoicbill.AutoIcBillBO;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.compiler.PfParameterVO;
+import nc.vo.scm.constant.ScmConst;
 import nc.vo.uap.pf.PFBusinessException;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.zmpub.pub.tool.ZmPubTool;
@@ -27,6 +28,16 @@ public class N_XC78_UNAPPROVE extends AbstractCompiler2 {
 	public Object runComClass(PfParameterVO vo) throws BusinessException {
 		try {
 			super.m_tmpVo = vo;
+			AutoIcBillBO icbo=new AutoIcBillBO();
+			icbo.dealOnUnApprove(getVo(), 
+		    		vo.m_currentDate, 
+		    		vo.m_operator,
+		    		true,
+		    		ScmConst.m_otherIn,
+		    		false,
+		    		ScmConst.m_otherOut,
+		    		true,
+		    		false);
 		  // ####本脚本必须含有返回值,返回DLG和PNL的组件不允许有返回值####
 			setParameter("currentVo", vo.m_preValueVo);
 			//判断是否存在下游，若存在不允许弃审
