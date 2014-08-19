@@ -9,6 +9,8 @@ import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.xcgl.pub.consts.PubNodeCodeConst;
 
 public class BillQueryDlg extends XCBillQueryDlg{
+	
+	
 	/**
 	 * 
 	 */
