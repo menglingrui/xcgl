@@ -7,8 +7,6 @@ import nc.ui.pub.bill.BillItem;
 import nc.ui.trade.bill.AbstractManageController;
 import nc.ui.trade.button.IBillButton;
 import nc.ui.trade.manage.ManageEventHandler;
-import nc.ui.xcgl.labindexset.Controller;
-import nc.ui.xcgl.labindexset.EventHandler;
 import nc.ui.xcgl.pub.bill.XCDefBillManageUI;
 import nc.vo.pub.CircularlyAccessibleValueObject;
 import nc.vo.xcgl.labindexset.checkClassInterface;
@@ -86,10 +84,18 @@ public class ClientUI extends XCDefBillManageUI{
 		
 		if(BillItem.HEAD == pos){
 			 String key = e.getKey();
-			 
-			 if("pk_invmandoc".equalsIgnoreCase(key)){
+		
+			 if("pk_invmandoc".equalsIgnoreCase(key) || "vdef20".equalsIgnoreCase(key)){
 				 getBillCardPanel().execHeadEditFormulas();
 			 }
+//			 if("vdef20".equalsIgnoreCase(key)){
+//				try {
+//					String pk_inv= ZmPubTool.getInvbaspkBymanPkForClient((String) getBillCardPanel().getHeadItem("vdef20").getValueObject());
+//					getBillCardPanel().getHeadItem("pk_defdoc20").setValue(pk_inv);
+//				} catch (BusinessException e1) {
+//					e1.printStackTrace();
+//				}
+//			 }
 		}
 	}
 	@Override

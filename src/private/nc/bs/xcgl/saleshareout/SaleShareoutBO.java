@@ -22,9 +22,7 @@ import nc.vo.scm.pub.vosplit.SplitBillVOs;
 import nc.vo.trade.pub.HYBillVO;
 import nc.vo.trade.pub.IBillStatus;
 import nc.vo.xcgl.genotherout.GenotheroutBVO;
-import nc.vo.xcgl.gensaleout.AggSaleOutVO;
 import nc.vo.xcgl.gensaleout.GenSaleOutBVO;
-import nc.vo.xcgl.gensaleout.GenSaleOutHVO;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.xcgl.pub.consts.PubNodeModelConst;
 import nc.vo.xcgl.pub.helper.MonthCloseHelper;
@@ -48,9 +46,9 @@ public class SaleShareoutBO {
      */
 	public void sendMessage(AggregatedValueObject valueVo, PfParameterVO vo) throws Exception {
 		//规划求解模型分摊
-//		if(valueVo==null||vo==null){
-//			return;
-//		}
+		if(valueVo==null||vo==null){
+			return;
+		}
 //		else{
 //		/**
 //		 * 销售出库矿区分摊计算主子孙结构
@@ -169,10 +167,10 @@ public class SaleShareoutBO {
 //				throw new BusinessException("当前日期已关账，不能进行审批！");
 //			}
 //		}
-		
-		if(valueVo==null||vo==null){
-		return;
-	}
+//		
+//		if(valueVo==null||vo==null){
+//		return;
+//	}
 	else{
 	    // get data from database
 		SaleShareoutHVO hvo = (SaleShareoutHVO) valueVo.getParentVO();

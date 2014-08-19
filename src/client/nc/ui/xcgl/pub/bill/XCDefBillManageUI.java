@@ -5,6 +5,7 @@ import java.util.List;
 
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.bill.BillEditEvent;
+import nc.ui.pub.bill.BillItem;
 import nc.ui.pub.bill.IBillItem;
 import nc.ui.zmpub.pub.bill.BillRowNo;
 import nc.ui.zmpub.pub.bill.DefBillManageUI;
@@ -18,6 +19,7 @@ import nc.vo.xcgl.pub.bill.IndexParaVO;
 import nc.vo.xcgl.pub.helper.IndexFineHeler;
 import nc.vo.xcgl.pub.stock.BillStockTool;
 import nc.vo.xcgl.pub.stock.PubStockOnHandVO;
+import nc.vo.zmpub.pub.tool.ZmPubTool;
 public abstract class XCDefBillManageUI extends DefBillManageUI{
 	private static final long serialVersionUID = -7381247020087070897L;
 	
@@ -44,8 +46,13 @@ public abstract class XCDefBillManageUI extends DefBillManageUI{
 	
 	@Override
 	public void afterEdit(BillEditEvent e) {
-     super.afterEdit(e);
+     //super.afterEdit(e);
 	 String key = e.getKey();
+	 if(BillItem.HEAD == e.getPos()){		
+	     if("pk_invmandoc".equalsIgnoreCase(key) || "vdef20".equalsIgnoreCase(key)){
+				 getBillCardPanel().execHeadEditFormulas();
+	     }
+	 }
 	 if("invname".equalsIgnoreCase(key)&&e.getPos()==IBillItem.BODY){
 		    if(isStockBill()==false){
 		    	return;
