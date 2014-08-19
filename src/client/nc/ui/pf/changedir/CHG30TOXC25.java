@@ -10,6 +10,8 @@ import nc.vo.pf.change.UserDefineFunction;
  */
 public class CHG30TOXC25 extends nc.ui.pf.change.VOConversionUI{
 	
+	
+	
 	/**
 	 * CHGXC13TOXC31 Ä¬ÈÏ¹¹Ôì
 	 */
