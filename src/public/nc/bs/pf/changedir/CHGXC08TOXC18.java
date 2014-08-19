@@ -8,6 +8,8 @@ import nc.vo.pf.change.UserDefineFunction;
  *
  */
 public class CHGXC08TOXC18 extends  nc.bs.pf.change.VOConversion{
+	
+	
 	public CHGXC08TOXC18(){
 		super();
 	}
