@@ -5,6 +5,7 @@ import nc.vo.pf.change.UserDefineFunction;
 /**
  * 过磅登记到矿区入库交换类
  * @author ddk
+ * 
  *
  */
 public class CHGXC08TOXC18 extends  nc.bs.pf.change.VOConversion{
