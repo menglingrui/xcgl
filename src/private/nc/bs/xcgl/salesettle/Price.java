@@ -101,6 +101,7 @@ public class Price {
 
 		SalepresettleBVO[][] bbvos = (SalepresettleBVO[][]) SplitBillVOs
 				.getSplitVOs(bvos1, new String[] { "vreserve2" });
+		
 		List<SalepresettleBVO> blist = new ArrayList<SalepresettleBVO>();
 
 		for (int n = 0; n < bbvos.length; n++) {
@@ -120,9 +121,44 @@ public class Price {
 							"select vreserve1 from xcgl_soct where pk_soct='"
 									+ pk_contract + "' and isnull(dr,0)=0 ",
 							new ColumnProcessor()));
-			// String qualityplan =hvo.getQualityplan();
+			////按预结算扣减额，扣减品位
+			for (int i = 1; i < bvos.length; i++) {
+				if(isPreSettle.booleanValue()){
+					//按预结算扣减额，扣减品位
+					getContractMap(pk_contract).clear();
+					getContractMap(pk_contract);
+					SalepresettleBVO sbvo=bvos[i];
+					UFDouble invngrade=PuPubVO.getUFDouble_NullAsZero(sbvo.getNgrade());
+					//扣掉预结算扣减额
+					if(getContractMap(pk_contract).get(sbvo.getPk_invmandoc())!=null){
+						UFDouble prenum=PuPubVO.getUFDouble_NullAsZero(
+								getContractMap(pk_contract).get(sbvo.getPk_invmandoc()).getNdownnum());
+						invngrade=invngrade.sub(prenum);
+					}				
+					/**
+					 * 设置调整后品位
+					 */
+					sbvo.setNgrade(invngrade);
+					String pk_invdexc = sbvo.getPk_invbasdoc();
+					String pk_mes = XcPubTool.getMeasByIndex(pk_invdexc);
+					if (PubOtherConst.pk_labgrade_ag.equals(pk_mes)) {
+						sbvo.setNamount(PuPubVO
+								.getUFDouble_NullAsZero(
+										bvos[0].getNamount()).multiply(
+										invngrade.div(1)));
+					} else {
+						sbvo.setNamount(PuPubVO
+								.getUFDouble_NullAsZero(
+										bvos[0].getNamount()).multiply(
+										invngrade.div(100)));
+					}
+									
+				}		
+				bvos[i].setNamounted(bvos[i].getNamount());
+				bvos[i].setNgraded(bvos[i].getNgrade());
+			}
 			// 初始化调整后数量
-			for (int i = 0; i < bvos.length; i++) {
+			for (int i = 0; i < bvos.length; i++) {		
 				bvos[i].setNamounted(bvos[i].getNamount());
 				bvos[i].setNgraded(bvos[i].getNgrade());
 			}
