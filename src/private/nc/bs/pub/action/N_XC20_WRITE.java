@@ -26,8 +26,8 @@ public Object runComClass(PfParameterVO vo) throws BusinessException {
 try{
 	FlouryieldHVO headvo= (FlouryieldHVO) vo.m_preValueVo.getParentVO();
 	BsUniqueCheck.FieldUniqueCheck(headvo, 
-			new String[]{"pk_billtype","dbilldate","pk_factory","pk_beltline","pk_classorder"},
-			"单据类型，单据日期，选厂，生产线，班次组合重复!");
+			new String[]{"pk_billtype","dbilldate","pk_factory","pk_beltline","pk_classorder","vdef20"},
+			"单据类型，单据日期，选厂，生产线，关联矿石，班次组合重复!");
 	super.m_tmpVo=vo;
 	try {
 			super.m_tmpVo = vo;
