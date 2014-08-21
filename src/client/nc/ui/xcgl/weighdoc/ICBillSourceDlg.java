@@ -3,17 +3,25 @@ package nc.ui.xcgl.weighdoc;
 
 import java.awt.Container;
 
+import nc.ui.ic.pub.pf.ICBillRefListPanel;
+import nc.ui.ic.pub.pf.ICSourceBillToBillBaseUI;
 import nc.ui.ic.pub.pf.ICSourceRefBaseDlg;
-import nc.ui.ic.pub.tools.GenMethod;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.change.PfChangeBO_Client;
 import nc.ui.pub.para.SysInitBO_Client;
-import nc.ui.scm.pub.sourceref.IBillReferQueryProxy;
+import nc.ui.querytemplate.IBillReferQuery;
 import nc.ui.scm.pub.sourceref.BillToBillRefPanel.ShowState;
+import nc.ui.scm.pub.sourceref.BillRefListPanel;
+import nc.ui.scm.pub.sourceref.IBillReferQueryProxy;
+import nc.vo.ic.pub.BillTypeConst;
 import nc.vo.ic.pub.ICConst;
 import nc.vo.ic.pub.bill.IItemKey;
+import nc.vo.ic.pub.billtype.BillTypeFactory;
+import nc.vo.ic.pub.billtype.IBillType;
+import nc.vo.ic.pub.billtype.ModuleCode;
 import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
+import nc.vo.scm.ic.ATPVO;
 import nc.vo.scm.pub.vosplit.SplitBillVOs;
 /**
  * 调拨订单对话框
@@ -172,5 +180,24 @@ public class ICBillSourceDlg extends ICSourceRefBaseDlg{
 			return IC035;
 		}
 
-
+	  @Override
+	  protected BillRefListPanel createDoubleTableListPanel() {
+	    // TODO 自动生成方法存根
+	    try{
+	      if(getBillType()!=null){
+	        IBillType billType = BillTypeFactory.getInstance().getBillType(getBillType());
+		        
+	        if(ATPVO.isTOOrder(getBillType())){
+	            return (BillRefListPanel)Class.forName("nc.ui.xcgl.weighdoc.DoubleBillRefListPanel5XToXC08").getConstructor(new Class[]{
+	                String.class, String.class, String.class, String.class }).newInstance(new Object[]{
+	                    getBusinessType(), getBillType(), getCurrentBillType(), getPkCorp()
+	                });
+	        }	        
+	      }
+	    }catch(Exception e){
+	      handleException(e);
+	      return null;
+	    }
+	    return super.createDoubleTableListPanel();
+	  }
 }

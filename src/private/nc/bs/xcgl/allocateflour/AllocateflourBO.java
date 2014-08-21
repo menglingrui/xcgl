@@ -78,6 +78,7 @@ public class AllocateflourBO {
 			        			bvo.setPk_measdoc(getmeaspkBybas(PuPubVO.getString_TrimZeroLenAsNull(onvos[i].getAttributeValue("pk_invbasdoc"))));
 			        			UFDouble nnum=PuPubVO.getUFDouble_NullAsZero(onvos[i].getAttributeValue("nnum"));
 			        			bvo.setNwetweight(nnum.multiply(num.div(flourmout)));
+			        			bvo.setNdryweight(nnum.multiply(num.div(flourmout)));
 			        			tarlist.add(bvo);
 		        			}
 		        			//给关联行号赋值
