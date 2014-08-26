@@ -217,7 +217,8 @@ public class CHGXC29FTOXC24 extends  nc.bs.pf.change.VOConversion{
 				"B_pk_invbasdoc->B_pk_invbasdoc",
 				"B_vcrowno->H_vcrowno",
 				"B_pk_father->B_pk_father",
-				"B_ndryweight->B_ndryweight",		//数量
+				"B_ndryweight->B_ndryweight",//数量
+				"B_nwetweight->B_ndryweight",//湿重
 				"B_vlastbillcode->H_vbillno",
 				"B_vlastbillid->H_pk_general_h",
 				"B_vlastbillrowid->B_general_b",
