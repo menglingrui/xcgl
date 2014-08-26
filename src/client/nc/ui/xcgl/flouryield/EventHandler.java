@@ -168,7 +168,7 @@ public class EventHandler extends XCFlowManageEventHandler{
 		if(billvo.getChildrenVO()!=null&&billvo.getChildrenVO().length>0){
 			BeforeSaveValudate.dataNotNullValidate(getBillCardPanelWrapper().getBillCardPanel());
 			FlouryieldBVO []bvos=(FlouryieldBVO[])billvo.getChildrenVO();
-			BsBeforeSaveValudate.beforeSaveBodyUnique(bvos,new String[]{"pk_invmandoc"},new String[]{"存货"});
+		//	BsBeforeSaveValudate.beforeSaveBodyUnique(bvos,new String[]{"pk_invmandoc"},new String[]{"存货"});
 		}
 		else
 			throw new Exception("表体不能为空");

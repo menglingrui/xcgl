@@ -42,8 +42,7 @@ public class ReportSql {
 		sql.append(" b.pk_factory pk_factory, ");//--选厂
 		sql.append(" b.pk_beltline pk_beltline,");//生产线
 		sql.append(" b.pk_classorder pk_classorder,");// --班次
-		sql.append(" b.vreserve1");//矿石类型
-	
+		sql.append(" b.vreserve1");//矿石类型	
 		sql.append(" from "+getFlouryieldBaseSql(wheresql)+" ");
 		sql.append(" join "+getBaseOreProcessingSql(wheresql)+"  ");
 //		public static String[] mapkey={"pk_corp","pk_factory","pk_beltline","pk_classorder",

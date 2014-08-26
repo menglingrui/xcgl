@@ -46,7 +46,7 @@ public class FlouryieldBO {
 		    FlouryieldHVO conhvo=(FlouryieldHVO) billvo.getParentVO();
 		    String corp=conhvo.getPk_corp();
 		    AggregatedValueObject[] bills=SplitBillVOs.getSplitVO(AggFlouryieldVO.class.getName(), FlouryieldHVO.class.getName(),FlouryieldBVO.class.getName(),
-    		(AggregatedValueObject)ObjectUtils.serializableClone(billvo), new String[]{"pk_factory","pk_beltline","pk_classorder"}, new String[]{"pk_deptdoc","pk_stordoc"});
+    		(AggregatedValueObject)ObjectUtils.serializableClone(billvo), new String[]{"pk_factory","pk_beltline","pk_classorder"}, new String[]{"vdef20","pk_deptdoc","pk_stordoc"});
 		    if(bills!=null&&bills.length!=0){
 		    for(int j=0;j<bills.length;j++){
 		    FlouryieldBVO[] bvos=(FlouryieldBVO[]) bills[j].getChildrenVO();
@@ -63,7 +63,7 @@ public class FlouryieldBO {
 		    			    String dept=PuPubVO.getString_TrimZeroLenAsNull(bbvoss[0].getPk_deptdoc());
 		    			    String invmandoc=PuPubVO.getString_TrimZeroLenAsNull(bbvoss[0].getPk_invmandoc());
 		    			    QueryData queryindex=new QueryData();
-		    			     Map<String, LabIndexSetBVO> map = queryindex.queryIndexSet(dept,invmandoc,corp);
+		    			    Map<String, LabIndexSetBVO> map = queryindex.queryIndexSet(dept,invmandoc,corp);
 		    		     	FlouryieldBVO bvo=new FlouryieldBVO();
 		    		     	String crowno=PuPubVO.getString_TrimZeroLenAsNull((count+1)*10);;
 		    			    bvo.setCrowno(crowno);		    			  

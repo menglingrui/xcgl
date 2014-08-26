@@ -3,10 +3,8 @@ package nc.ui.xcgl.report.dayreport;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumnModel;
 
-import nc.ui.pub.beans.UIDialog;
 import nc.ui.pub.beans.UITable;
 import nc.ui.pub.beans.table.ColumnGroup;
 import nc.ui.pub.beans.table.GroupableTableHeader;
@@ -25,7 +23,7 @@ import nc.vo.zmpub.pub.report2.ZmReportBaseUI3;
  */
 public class RepClientUI extends ZmReportBaseUI3 {
 	private static final long serialVersionUID = 1L;
-	// 报表功能节点号 2002AC021525
+	//报表功能节点号 2002AC021525
 	private QueryClientDLG m_qryDlg;
 	/**
 	 * 产量计算的最小维度
@@ -173,7 +171,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
         cardHeader.addColumnGroup(oregroup4);
         
         
-        ColumnGroup oregroup5= new ColumnGroup("锌精粉金属量");
+        ColumnGroup oregroup5= new ColumnGroup("尾矿金属量");
         //Pb(t),    Zn(t),    银(Kg)---->尾矿金属量
     	//pbtm_pb, zntm_zn,   pbtm_ag
         oregroup5.add(cardTcm.getColumn(getColumnIndexByCode("pbtm_pb")));
@@ -241,12 +239,12 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	private void dealZnTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Pb_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail);
+	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,);
 		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
     	//zn_noutnum,zn_pb, zn_zn
         vo.setAttributeValue("znt_pb", Pbgrade);
 	    vo.setAttributeValue("znt_zn", Zngrade);
-	    vo.setAttributeValue("znt_noutnum", noutnum);
+	 //   vo.setAttributeValue("znt_noutnum", noutnum);
 	    vo.setAttributeValue("zntm_zn", Znnoutmetalnum);
 	}
 
@@ -254,13 +252,13 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail);
+	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
         vo.setAttributeValue("pbt_pb", Pbgrade);
 	    vo.setAttributeValue("pbt_ag", Aggrade);
 	    vo.setAttributeValue("pbt_zn", Zngrade);
-	    vo.setAttributeValue("pbt_noutnum", noutnum);
+	//    vo.setAttributeValue("pbt_noutnum", noutnum);
 	    vo.setAttributeValue("pbtm_pb", Pbnoutmetalnum);
 	    vo.setAttributeValue("pbtm_ag", Agnoutmetalnum);
 	}
@@ -268,7 +266,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	private void dealZnPower(ReportBaseVO vo, ReportBaseVO[] bvos) {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Pb_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power);
+		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
 		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
         UFDouble Znrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
     	//zn_noutnum,zn_pb, zn_zn
@@ -283,7 +281,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power);
+		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
         UFDouble Pbrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
@@ -324,10 +322,12 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	}
 
 	private UFDouble getNoutNum(ReportBaseVO[] bvos, String type_power,
-			String pb_power) {
+			String pb_power,String pk_invdex) {
 		for(int i=0;i<bvos.length;i++){
 			if(pb_power.equals(bvos[i].getAttributeValue("pk_invbasdoc"))){
-				return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("noutput"));
+				if(pk_invdex.equals(bvos[i].getAttributeValue("pk_invindex"))){
+				   return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("noutput"));
+				}
 			}
 		}
 		return new UFDouble(0);
