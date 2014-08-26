@@ -10,6 +10,7 @@ public class CHGXC19TOXC37MOD  extends  nc.bs.pf.change.VOConversion{
 			"H_pk_invbasdoc->H_pk_invbasdoc",
 			"H_nnum->H_ndryweight",
 			"H_pk_father->H_pk_father",
+			"H_vdef1->H_pk_minarea",//╡©це
 		};
 	}
 	public String[] getFormulas() {

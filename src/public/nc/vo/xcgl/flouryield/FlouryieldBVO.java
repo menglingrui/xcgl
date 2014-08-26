@@ -102,8 +102,30 @@ public class FlouryieldBVO extends XCHYChildSuperVO{
 	 * 关联行号
 	 */
 	private String vcrowno;
+	/**
+	 * 关联矿石(基本id)
+	 */
+	public String vdef20;
+	/**
+	 * 关联矿石(管理id)
+	 */
+	public String pk_defdoc20;
 	
 	
+	
+	
+	public String getVdef20() {
+		return vdef20;
+	}
+	public void setVdef20(String vdef20) {
+		this.vdef20 = vdef20;
+	}
+	public String getPk_defdoc20() {
+		return pk_defdoc20;
+	}
+	public void setPk_defdoc20(String pk_defdoc20) {
+		this.pk_defdoc20 = pk_defdoc20;
+	}
 	public String getPk_father() {
 		return pk_father;
 	}

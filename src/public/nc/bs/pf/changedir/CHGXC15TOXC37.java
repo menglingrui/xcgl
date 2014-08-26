@@ -13,7 +13,8 @@ public class CHGXC15TOXC37 extends  nc.bs.pf.change.VOConversion{
 			"B_pk_invmandoc->B_pk_invmandoc",
 			"B_pk_invbasdoc->B_pk_invbasdoc",
 			"B_nnum->B_ndryweight",
-			"B_pk_father->B_pk_father"
+			"B_pk_father->B_pk_father",
+			"B_vdef1->H_pk_minarea",//╡©це
 		};
 	}
 	public String[] getFormulas() {

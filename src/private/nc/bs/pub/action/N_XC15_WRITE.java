@@ -2,10 +2,12 @@ package nc.bs.pub.action;
 import java.util.Hashtable;
 
 import nc.bs.pub.compiler.AbstractCompiler2;
+import nc.bs.zmpub.pub.check.BsUniqueCheck;
 import nc.bs.zmpub.pub.tool.stock.BillStockBO;
 import nc.ui.scm.util.ObjectUtils;
 import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
+import nc.vo.pub.SuperVO;
 import nc.vo.pub.compiler.PfParameterVO;
 import nc.vo.uap.pf.PFBusinessException;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
@@ -36,16 +38,11 @@ try{
 			BillStockBO bo =new BillStockTool();
 			if(vo.m_preValueVo!=null){
 				bo.updateStockByBillForSave((AggregatedValueObject)ObjectUtils.serializableClone(vo.m_preValueVo), PubBillTypeConst.billtype_Generalout);
-			}		
-		//	vo.m_preValueVo 
-//			if(vo.m_preValueVo.getParentVO()!=null){
-//				FassetsHVO cvo=(FassetsHVO)vo.m_preValueVo.getParentVO();
-//				BsUniqueCheck.FieldUniqueChecks(cvo, new String[]{"pk_corp","pk_billtype"},null,
-//						" 公司["+ZmPubTool.getCorpCodeByPk(cvo.getPk_corp())+","+ZmPubTool.getCorpNameByPk(cvo.getPk_corp())+"];" +
-//					    " 单据类型["+cvo.getPk_billtype()+"];" +
-//					   
-//					    " 信息组合重复重复!");
-//			}
+			}	
+			SuperVO headvo=(SuperVO)vo.m_preValueVo.getParentVO();
+			BsUniqueCheck.FieldUniqueCheck(headvo, 
+					new String[]{"pk_billtype","dbilldate","pk_factory","pk_beltline","pk_minarea","pk_classorder","vreserve1"},
+					"单据类型，单据日期，选厂，生产线，部门，矿石类型，班次组合重复!");
 			retObj = runClass("nc.bs.xcgl.pub.HYBillSave", "saveBill","nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,	m_methodReturnHas);
 			return retObj;
 		} catch (Exception ex) {

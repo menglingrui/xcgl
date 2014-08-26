@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import nc.bs.zmpub.pub.check.BsBeforeSaveValudate;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.controller.IControllerBase;
@@ -15,6 +16,7 @@ import nc.vo.pub.lang.UFDate;
 import nc.vo.scm.pu.PuPubVO;
 import nc.vo.xcgl.flouryield.AggFlouryieldVO;
 import nc.vo.xcgl.flouryield.FlouryieldBVO;
+import nc.vo.xcgl.genprcessout.GenPrcOutBVO;
 import nc.vo.xcgl.genprcessout.GenPrcOutHVO;
 import nc.vo.xcgl.pub.bill.CalYieldVO;
 import nc.vo.xcgl.pub.bill.ProSetEnum;
@@ -93,7 +95,6 @@ public class EventHandler extends XCFlowManageEventHandler{
 	 * @throws BusinessException 
 	 */
 	public ProSetParaVO[] createParas() throws BusinessException {	       
- 
 	            String pk_corp=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("pk_corp").getValueObject());	
 	            String pk_factory=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("pk_factory").getValueObject());		
 		        String pk_beltline=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("pk_beltline").getValueObject());		
@@ -101,26 +102,39 @@ public class EventHandler extends XCFlowManageEventHandler{
 		        String pk_minetype=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("vreserve1").getValueObject());	
 		        UFDate dbilldate=PuPubVO.getUFDate(getBillCardPanel().getHeadItem("dbilldate").getValueObject()); 
 		        //关联原矿矿石
-		        String pk_invmandoc=(String) getBillCardPanel().getHeadItem("vdef20").getValueObject();
+		   //     String pk_invmandoc=(String) getBillCardPanel().getHeadItem("vdef20").getValueObject();
 		        
 		        GenPrcOutHVO[] hvos= (GenPrcOutHVO[]) HYPubBO_Client.queryByCondition(GenPrcOutHVO.class, " isnull(dr,0)=0 and pk_corp='"+pk_corp+"'" +
 		        " and pk_factory='"+pk_factory+"' and pk_beltline='"+pk_beltline+"'" +
 		        " and pk_classorder='"+pk_classorder+"' and dbilldate='"+dbilldate.toString()+"'" +
-		        " and vreserve1='"+pk_minetype+"' and vdef20='"+pk_invmandoc+"' ");
+		        " and vreserve1='"+pk_minetype+"'");
 	            if(hvos==null || hvos.length==0){
 	            	throw new BusinessException("没有原矿加工出库单");
 	            }	            
-	            HashMap<String,String>  mines=new HashMap<String, String>();
-	            for(int i=0;i<hvos.length;i++){
-	            	mines.put(hvos[i].getPk_minarea(), hvos[i].getPk_minarea());
+	            HashMap<String,Map<String,String>>  mines=new HashMap<String, Map<String,String>>();
+	            for(int i=0;i<hvos.length;i++){	            	
+	            	if(mines.get(hvos[i].getPk_minarea())==null){
+	            		mines.put(hvos[i].getPk_minarea(), new HashMap<String, String>());
+	            	}
+	            	
+			        GenPrcOutBVO[] bvos= (GenPrcOutBVO[]) HYPubBO_Client.queryByCondition(GenPrcOutBVO.class, 
+			        		" isnull(dr,0)=0 and pk_general_h='"+hvos[i].getPrimaryKey()+"'" );
+			        if(bvos!=null && bvos.length>0){
+			        	for(int j=0;j<bvos.length;j++){
+			        		mines.get(hvos[i].getPk_minarea()).put(bvos[j].getPk_invmandoc(), bvos[j].getPk_invmandoc());
+			        	}			        	
+			        }
 	            }
-	            
-	            List<ProSetParaVO> list=new ArrayList<ProSetParaVO>();
-	            
+	            List<ProSetParaVO> list=new ArrayList<ProSetParaVO>();            
 	            for(String key:mines.keySet()){
-	            	 ProSetParaVO para=createPara();	
-	            	 para.setPk_minarea(key);
-	            	 list.add(para);
+	            	 if(mines.get(key)!=null&&mines.get(key).size()>0){
+	            		 for(String bkey:mines.get(key).keySet()){
+	            			 ProSetParaVO para=createPara();	
+	    	            	 para.setPk_minarea(key);
+	    	            	 para.setPk_invmandoc(bkey);
+	    	            	 list.add(para);
+	            		 }
+	            	 }
 	            }	         
 		return list.toArray(new ProSetParaVO[0]);
 	}
@@ -136,14 +150,13 @@ public class EventHandler extends XCFlowManageEventHandler{
 	        UFDate dbilldate=PuPubVO.getUFDate(getBillCardPanel().getHeadItem("dbilldate").getValueObject());       
 	        String pk_minetype=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("vreserve1").getValueObject());
 	        //关联原矿矿石
-	        String pk_invmandoc=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("vdef20").getValueObject());
+//	        String pk_invmandoc=PuPubVO.getString_TrimZeroLenAsNull(getBillCardPanel().getHeadItem("vdef20").getValueObject());
 	        para.setPk_minetype(pk_minetype);
 	        para.setPk_factory(pk_factory);
 	        para.setPk_beltline(pk_beltline);
 	        para.setPk_classorder(pk_classorder);
-	        para.setPk_invmandoc(pk_invmandoc);
-	        para.setPk_corp(ClientEnvironment.getInstance().getCorporation().getPrimaryKey());
-	        
+//	        para.setPk_invmandoc(pk_invmandoc);
+	        para.setPk_corp(ClientEnvironment.getInstance().getCorporation().getPrimaryKey());	        
 	        para.setDbilldate(dbilldate);
 		return para;
 	}
@@ -153,10 +166,9 @@ public class EventHandler extends XCFlowManageEventHandler{
 		if(billvo==null)
 			return;
 		if(billvo.getChildrenVO()!=null&&billvo.getChildrenVO().length>0){
-			//人员编码和人员名称重复性校验
 			BeforeSaveValudate.dataNotNullValidate(getBillCardPanelWrapper().getBillCardPanel());
 			FlouryieldBVO []bvos=(FlouryieldBVO[])billvo.getChildrenVO();
-		//	BsBeforeSaveValudate.beforeSaveBodyUnique(bvos, new String[]{"minarea","stordoc","invcode"}, new String[]{"矿区","仓库","存货编码"});
+			BsBeforeSaveValudate.beforeSaveBodyUnique(bvos,new String[]{"pk_invmandoc"},new String[]{"存货"});
 		}
 		else
 			throw new Exception("表体不能为空");

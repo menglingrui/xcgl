@@ -50,14 +50,14 @@ public class BillStockTool extends BillStockBO {
 	/**
 	 * 先存量定义的最小维度 维度为： 公司 仓库 货位 存货 批次 存货状态 入库日期
 	 */
-	private String[] def_fields = new String[] { "pk_corp", "pk_stordoc",
+	private String[] def_fields = new String[] { "pk_corp","vdef1", "pk_stordoc",
 			"pk_factory", "pk_invmandoc","pk_invbasdoc","pk_father",
 		};
 	/**
 	 * 先存量定义的最小维度 维度为： 公司 仓库 货位 存货 批次 存货状态 入库日期
 	 */
-	private String[] def_fieldsName = new String[] { "公司", "仓库",
-			"选厂", "存货管理主键","存货基本主键", 
+	private String[] def_fieldsName = new String[] { "公司", "部门","仓库",
+			"选厂", "存货管理主键","存货基本主键","关联矿石主键", 
 		};
    
 	@Override
@@ -147,6 +147,7 @@ public class BillStockTool extends BillStockBO {
 		String pk_invmandoc=billvo.getPk_invmandoc();
 		String pk_factory=billvo.getPk_factory();
 		String pk_stordoc=billvo.getPk_stordoc();
+		String vdef1=billvo.getVdef1();
 		sb.append("\n存货为：["+PuPubVO.getString_TrimZeroLenAsNull(ZmPubTool.execFomular("invcode->getColValue(bd_invbasdoc,invcode,pk_invbasdoc," +
 					"getColValue(bd_invmandoc,pk_invbasdoc,pk_invmandoc,pk_invmandoc))",
 					new String[]{"pk_invmandoc"}, new String[]{pk_invmandoc}))+"],");
@@ -161,6 +162,10 @@ public class BillStockTool extends BillStockBO {
 			
 		sb.append("["+PuPubVO.getString_TrimZeroLenAsNull(ZmPubTool.execFomular("vfactoryname->getColValue(xcgl_factory,vfactoryname,pk_factory,pk_factory)",
 					new String[]{"pk_factory"}, new String[]{pk_factory}))+"]   \n");
+		
+		sb.append("部门为:["+PuPubVO.getString_TrimZeroLenAsNull(ZmPubTool.getDepCodeByPk(vdef1))+"],");
+			
+		sb.append("["+PuPubVO.getString_TrimZeroLenAsNull(ZmPubTool.getDepCodeByPk(vdef1))+"]   \n");
 		
 		sb.append("仓库为:["+PuPubVO.getString_TrimZeroLenAsNull(ZmPubTool.execFomular("storcode->getColValue(bd_stordoc,storcode,pk_stordoc,pk_stordoc)",
 				new String[]{"pk_stordoc"},new String[]{pk_stordoc}))+"],");

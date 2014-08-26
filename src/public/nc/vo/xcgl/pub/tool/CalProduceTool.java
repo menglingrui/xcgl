@@ -27,6 +27,7 @@ public class CalProduceTool {
 	public ProSetParaVO[] paras=new ProSetParaVO[0];
 	//para+stock content
 	Map<String,UFDouble> grademap=new HashMap<String, UFDouble>();
+//	Map<String,List<String>> orepkmap=new HashMap<String, List<String>>();
 	/**
 	 * 解析topMap获得产量VO
 	 * @param topMap
@@ -720,6 +721,11 @@ public class CalProduceTool {
 						String key = "RawOre"+ PuPubVO.getString_TrimZeroLenAsNull(cvo.getPk_invmandoc())
 						                     + PuPubVO.getString_TrimZeroLenAsNull(cvo.getPk_invbasdoc()+para);
 						grademap.put(key, PuPubVO.getUFDouble_NullAsZero(cvo.getNgrade()));
+						
+//						List<String> list=new ArrayList<String>();
+//						list.add(cvo.getPk_invmandoc());
+//						list.add(cvo.getPk_invbasdoc());
+// 						orepkmap.put(para, list);
 					}
 				}
 			}
@@ -742,7 +748,9 @@ public class CalProduceTool {
 		apbvo.setPk_deptdoc(para.getPk_minarea());
 		apbvo.setPk_invmandoc(PuPubVO.getString_TrimZeroLenAsNull(bb2vo.getPk_invmandoc()));
 		apbvo.setPk_invbasdoc(PuPubVO.getString_TrimZeroLenAsNull(bb2vo.getPk_invbasdoc()));
-		
+		//设置关联矿石
+		apbvo.setVdef20(para.getPk_invmandoc());
+		apbvo.setPk_defdoc20(para.getPk_invbasdoc());
 	    if(mainnumvo!=null){
 	    	apbvo.setPk_manindex(PuPubVO.getString_TrimZeroLenAsNull(mainnumvo.getPk_invmandoc()));
 			apbvo.setPk_invindex(PuPubVO.getString_TrimZeroLenAsNull(mainnumvo.getPk_invbasdoc()));

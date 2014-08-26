@@ -12,7 +12,8 @@ public class CHGXC27TOXC37MOD extends VOConversion{
 				 "H_pk_stordoc->H_pk_stordoc",
 				 "H_nnum->H_nlock",
 				 "H_nlock->H_nlock",
-				 "H_pk_father->H_pk_father"
+				 "H_pk_father->H_pk_father",
+				 "H_vdef1->H_pk_minarea",//╡©це
 		};
 	}
 	public String[] getFormulas() {

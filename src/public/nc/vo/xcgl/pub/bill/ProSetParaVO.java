@@ -1,6 +1,7 @@
 package nc.vo.xcgl.pub.bill;
 import nc.vo.pub.SuperVO;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.xcgl.pub.tool.XcPubTool;
 /**
  * 生产流程设置参数VO
  * @author mlr
@@ -63,8 +64,16 @@ public class ProSetParaVO extends SuperVO{
     
     private String pk_minetype;
     
-    
-    
+    @Override
+    public String toString(){
+		
+    	
+    	return 	this.getPk_corp()+this.getPk_factory() + this.getPk_beltline()
+    			+ this.getPk_classorder() + this.getDbilldate()
+    			+ this.getPk_minarea()+this.getPk_minetype()
+    			+ this.getPk_invmandoc();
+    	
+    }
     
 	public String getPk_invmandoc() {
 		return pk_invmandoc;
