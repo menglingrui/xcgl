@@ -5,7 +5,7 @@ import nc.ui.pub.ClientEnvironment;
 /**
  * 选厂日报
  * 
- * @author Jay
+ * @author mlr
  * 
  */
 public class ReportSql {	
