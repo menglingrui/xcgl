@@ -18,7 +18,6 @@ public class N_XC15_DELETE extends AbstractCompiler2 {
 	private java.util.Hashtable m_methodReturnHas = new java.util.Hashtable();
 	private Hashtable m_keyHas = null;
 
-
 	public N_XC15_DELETE() {
 		super();
 	}
@@ -29,18 +28,18 @@ public class N_XC15_DELETE extends AbstractCompiler2 {
 	public Object runComClass(PfParameterVO vo) throws BusinessException {
 		try {
 			super.m_tmpVo = vo;
-				// ####本脚本必须含有返回值,返回DLG和PNL的组件不允许有返回值####
+			// ####本脚本必须含有返回值,返回DLG和PNL的组件不允许有返回值####
 			Object retObj = null;
 			//同步现存量
 			BillStockBO bo =new BillStockTool();
 			if(vo.m_preValueVo!=null){			
-				bo.updateStockByBillForDelete((AggregatedValueObject)ObjectUtils.serializableClone(vo.m_preValueVo), PubBillTypeConst.billtype_Generalout);
+				bo.updateStockByBillForDelete1((AggregatedValueObject)ObjectUtils.serializableClone(vo.m_preValueVo), PubBillTypeConst.billtype_Generalout);
 			}	
-			// 方法说明:行业公共删除
+			//方法说明:行业公共删除
 			retObj = runClass("nc.bs.trade.comdelete.BillDelete", "deleteBill",
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
-			// ##################################################			
+			//##################################################			
 			return retObj;
 		} catch (Exception ex) {
 			if (ex instanceof BusinessException)

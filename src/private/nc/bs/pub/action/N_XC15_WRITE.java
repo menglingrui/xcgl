@@ -37,7 +37,7 @@ try{
 			//同步现存量
 			BillStockBO bo =new BillStockTool();
 			if(vo.m_preValueVo!=null){
-				bo.updateStockByBillForSave((AggregatedValueObject)ObjectUtils.serializableClone(vo.m_preValueVo), PubBillTypeConst.billtype_Generalout);
+				bo.updateStockByBillForSave1((AggregatedValueObject)ObjectUtils.serializableClone(vo.m_preValueVo), PubBillTypeConst.billtype_Generalout);
 			}	
 			SuperVO headvo=(SuperVO)vo.m_preValueVo.getParentVO();
 			BsUniqueCheck.FieldUniqueCheck(headvo, 
