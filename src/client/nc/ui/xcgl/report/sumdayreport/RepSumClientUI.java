@@ -210,8 +210,7 @@ public class RepSumClientUI extends ZmReportBaseUI3 {
 		}
 		if(list.get(0)==null || list.get(0).length==0){
 			return null;
-		}
-    	
+		}   	
 		return getDealVO(list.get(0));
 	}
 
