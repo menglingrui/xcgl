@@ -6,7 +6,6 @@ import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.beans.UIPanel;
 import nc.ui.pub.pf.IinitQueryData2;
 import nc.ui.trade.query.HYQueryDLG;
-import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.xcgl.pub.consts.PubNodeCodeConst;
 
 public class BillQueryDlg extends HYQueryDLG implements IinitQueryData2{

@@ -19,7 +19,6 @@ import nc.vo.xcgl.pub.bill.IndexParaVO;
 import nc.vo.xcgl.pub.helper.IndexFineHeler;
 import nc.vo.xcgl.pub.stock.BillStockTool;
 import nc.vo.xcgl.pub.stock.PubStockOnHandVO;
-import nc.vo.zmpub.pub.tool.ZmPubTool;
 public abstract class XCDefBillManageUI extends DefBillManageUI{
 	private static final long serialVersionUID = -7381247020087070897L;
 	

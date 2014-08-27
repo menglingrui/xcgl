@@ -7,8 +7,8 @@ import nc.ui.ic.pub.pf.ICSourceRefBaseDlg;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.change.PfChangeBO_Client;
 import nc.ui.pub.para.SysInitBO_Client;
-import nc.ui.scm.pub.sourceref.IBillReferQueryProxy;
 import nc.ui.scm.pub.sourceref.BillToBillRefPanel.ShowState;
+import nc.ui.scm.pub.sourceref.IBillReferQueryProxy;
 import nc.vo.ic.pub.ICConst;
 import nc.vo.pub.BusinessException;
 /**

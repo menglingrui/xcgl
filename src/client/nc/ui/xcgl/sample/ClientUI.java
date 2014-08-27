@@ -1,6 +1,5 @@
 package nc.ui.xcgl.sample;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import nc.ui.pub.ButtonObject;

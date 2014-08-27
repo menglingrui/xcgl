@@ -1,16 +1,16 @@
 package nc.ui.xcgl.runrecord;
 
 import java.util.List;
-
-import javax.swing.ListSelectionModel;
 import java.util.Map;
 
+import javax.swing.ListSelectionModel;
+
+import nc.ui.trade.report.query.QueryDLG;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.xcgl.pub.consts.PubNodeCodeConst;
 import nc.vo.zmpub.pub.report.ReportBaseVO;
 import nc.vo.zmpub.pub.report2.CombinVO;
 import nc.vo.zmpub.pub.report2.ZmReportBaseUI3;
-import nc.ui.trade.report.query.QueryDLG;
 
 public class ReportUI extends ZmReportBaseUI3{
 

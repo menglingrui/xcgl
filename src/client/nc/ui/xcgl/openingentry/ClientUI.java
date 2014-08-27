@@ -1,32 +1,18 @@
 package nc.ui.xcgl.openingentry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import nc.ui.pub.ButtonObject;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.bill.BillCardBeforeEditListener;
 import nc.ui.pub.bill.BillEditEvent;
 import nc.ui.pub.bill.BillItemEvent;
-import nc.ui.pub.bill.IBillItem;
 import nc.ui.trade.bill.AbstractManageController;
 import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.button.IBillButton;
 import nc.ui.trade.manage.ManageEventHandler;
-import nc.ui.xcgl.openingentry.Controller;
-import nc.ui.xcgl.openingentry.EventHandler;
 import nc.ui.xcgl.pub.bill.XCDefBillManageUI;
-import nc.ui.zmpub.pub.bill.BillRowNo;
-import nc.vo.pub.BusinessException;
 import nc.vo.pub.CircularlyAccessibleValueObject;
-import nc.vo.pub.lang.UFBoolean;
-import nc.vo.scm.pu.PuPubVO;
 import nc.vo.trade.pub.IBillStatus;
-import nc.vo.xcgl.labindexset.LabIndexSetBVO;
-import nc.vo.xcgl.pub.bill.IndexParaVO;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
-import nc.vo.xcgl.pub.helper.IndexFineHeler;
-import nc.vo.zmpub.pub.tool.ZmPubTool;
 /**
  * ÆÚ³õÂ¼Èë
  * @author lxh

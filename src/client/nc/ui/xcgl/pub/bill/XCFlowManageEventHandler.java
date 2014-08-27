@@ -1,6 +1,8 @@
 package nc.ui.xcgl.pub.bill;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import nc.ui.pub.ButtonObject;
 import nc.ui.pub.ClientEnvironment;
@@ -20,6 +22,7 @@ import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFBoolean;
 import nc.vo.pub.lang.UFDate;
+import nc.vo.pub.lang.UFDouble;
 import nc.vo.scm.pu.PuPubVO;
 import nc.vo.trade.button.ButtonVO;
 import nc.vo.xcgl.pub.helper.MonthCloseHelper;
@@ -929,14 +932,62 @@ public class XCFlowManageEventHandler extends FlowManageEventHandler {
 			for(int i=0;i<count;i++){
 				if(PuPubVO.getUFBoolean_NullAs(getBillCardPanel().getBodyValueAt(i, "ureserve2"), new UFBoolean(false)).booleanValue()==true
 						&&PuPubVO.getUFBoolean_NullAs(getBillCardPanel().getBodyValueAt(i, "ureserve1"), new UFBoolean(false)).booleanValue()==false
-						){
+						){					
 					getBillCardPanel().getBillModel().setValueAt(null, i, "notaxsum");
 					getBillCardPanel().getBillModel().setValueAt(null, i, "npricetaxsum");
 					getBillCardPanel().getBillModel().setValueAt(null, i, "nreserve1");
 					getBillCardPanel().getBillModel().setValueAt(null, i, "nreserve5");
 				}
 			}
+			//设置精粉价税合计和无税金额	
+			//由于精度问题，通过除法得到的含税单价，可能存在无限小数
+			//所以，含税单价*数量得到金额，有可能不等于指标价税合计之和
+			for(int i=0;i<count;i++){
+				if(PuPubVO.getUFBoolean_NullAs(getBillCardPanel().getBodyValueAt(i, "ureserve2"), new UFBoolean(false)).booleanValue()==true
+						&&PuPubVO.getUFBoolean_NullAs(getBillCardPanel().getBodyValueAt(i, "ureserve1"), new UFBoolean(false)).booleanValue()==false
+						){	
+				    String rowno=(String) getBillCardPanel().getBodyValueAt(i, "crowno");
+		            
+				    Integer[] rows=getJoinRowno(rowno);
+				    UFDouble nmy=new UFDouble(0);
+				    UFDouble wnmy=new UFDouble(0);
+				    if(rows!=null && rows.length>0){
+				    	for(int j=0;j<rows.length;j++){
+				    		nmy=nmy.add(PuPubVO.getUFDouble_NullAsZero(
+				    				getBillCardPanel().getBodyValueAt(rows[j], "nreserve10")));
+				    		wnmy=wnmy.add(PuPubVO.getUFDouble_NullAsZero(
+				    				getBillCardPanel().getBodyValueAt(rows[j], "nreserve9")));
+				    	}
+				    }			    
+				    getBillCardPanel().getBillModel().setValueAt(nmy, i, "nreserve10");
+				    getBillCardPanel().getBillModel().setValueAt(wnmy,i, "nreserve9");	
+				}
+			}
 		}
+	}
+
+	private Integer[] getJoinRowno(String rowno) {
+		int count = getBillCardPanel().getRowCount();
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < count; i++) {
+			if (!PuPubVO.getUFBoolean_NullAs(
+					getBillCardPanel().getBodyValueAt(i, "ureserve2"),
+					new UFBoolean(false)).booleanValue() == true) {
+
+				if (PuPubVO.getUFBoolean_NullAs(
+						getBillCardPanel().getBodyValueAt(i, "uimpurity"),
+						new UFBoolean(false)).booleanValue() == true) {
+					// 获取关联行号
+					String rowno1 = (String) getBillCardPanel().getBodyValueAt(
+							i, "vreserve2");
+					if (rowno.equals(rowno1)) {
+						list.add(new Integer(i));
+					}
+				}
+
+			}
+		}
+		return list.toArray(new Integer[0]);
 	}
 
 	

@@ -1,6 +1,5 @@
 package nc.ui.xcgl.sample;
 
-import nc.bs.zmpub.pub.check.BsUniqueCheck;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.beans.UIDialog;
 import nc.ui.trade.business.HYPubBO_Client;
@@ -11,7 +10,6 @@ import nc.ui.zmpub.pub.check.BeforeSaveValudate;
 import nc.vo.pub.SuperVO;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.xcgl.sample.AggSampleVO;
-import nc.vo.xcgl.sample.SampleHVO;
 /**
  * หอั๙ตฅ
  * @author yangtao

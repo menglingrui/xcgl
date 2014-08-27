@@ -4,7 +4,6 @@ import nc.ui.trade.bill.AbstractManageController;
 import nc.ui.trade.bill.ISingleController;
 import nc.ui.trade.businessaction.IBusinessActionType;
 import nc.ui.trade.button.IBillButton;
-import nc.vo.trade.pub.HYBillVO;
 import nc.vo.xcgl.pub.bill.XCHYBillVO;
 import nc.vo.xcgl.pub.consts.PubNodeModelConst;
 import nc.vo.xcgl.technology.TechnologyVO;

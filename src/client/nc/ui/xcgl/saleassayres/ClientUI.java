@@ -8,9 +8,7 @@ import nc.ui.trade.manage.ManageEventHandler;
 import nc.ui.xcgl.pub.bill.XCDefBillManageUI;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.CircularlyAccessibleValueObject;
-import nc.vo.trade.button.ButtonVO;
 import nc.vo.trade.pub.IBillStatus;
-import nc.vo.xcgl.pub.consts.PuBtnConst;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 
 /**

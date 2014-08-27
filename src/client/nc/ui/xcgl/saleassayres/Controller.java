@@ -6,7 +6,6 @@ import nc.ui.trade.button.IBillButton;
 import nc.vo.xcgl.assayres.AggAssayResVO;
 import nc.vo.xcgl.assayres.AssayResBVO;
 import nc.vo.xcgl.assayres.AssayResHVO;
-import nc.vo.xcgl.pub.consts.PuBtnConst;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.zmpub.pub.consts.ZmpubBtnConst;
 /**

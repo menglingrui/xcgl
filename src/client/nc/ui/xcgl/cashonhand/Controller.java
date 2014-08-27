@@ -7,7 +7,6 @@ import nc.ui.trade.button.IBillButton;
 import nc.vo.xcgl.latecheckout.MonthAccountVO;
 import nc.vo.xcgl.pub.bill.XCHYBillVO;
 import nc.vo.xcgl.pub.consts.PubNodeModelConst;
-import nc.vo.zmpub.pub.consts.ZmpubBtnConst;
 /**
  * ½á´æÁ¿Controller
  * @author ddk

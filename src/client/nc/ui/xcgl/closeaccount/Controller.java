@@ -7,7 +7,6 @@ import nc.vo.xcgl.closeaccount.AggCloseAccountVO;
 import nc.vo.xcgl.closeaccount.CloseAccountBVO;
 import nc.vo.xcgl.closeaccount.CloseAccountHVO;
 import nc.vo.xcgl.pub.consts.PuBtnConst;
-import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 
 public class Controller extends AbstractManageController{
 

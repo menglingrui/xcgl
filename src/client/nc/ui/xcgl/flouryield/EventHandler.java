@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nc.bs.zmpub.pub.check.BsBeforeSaveValudate;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.controller.IControllerBase;

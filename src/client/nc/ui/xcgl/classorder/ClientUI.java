@@ -5,8 +5,6 @@ import nc.ui.pub.ClientEnvironment;
 import nc.ui.trade.bill.ICardController;
 import nc.ui.trade.button.IBillButton;
 import nc.ui.trade.card.CardEventHandler;
-import nc.ui.xcgl.classorder.Controller;
-import nc.ui.xcgl.classorder.Eventhandler;
 import nc.ui.xcgl.pub.bill.XCBillCardUI;
 import nc.vo.xcgl.classorder.checkClassInterface;
 

@@ -21,6 +21,7 @@ import nc.ui.scm.pub.query.SCMQueryConditionDlg;
 import nc.ui.scm.ref.prm.CustAddrRefModel;
 import nc.ui.scm.so.SaleBillType;
 import nc.ui.so.pub.DataPowerUtils;
+import nc.ui.so.so001.SaleOrderDLG;
 import nc.ui.so.so001.panel.list.SOBusiTypeRefPane;
 import nc.vo.bd.CorpVO;
 import nc.vo.pub.BusinessException;

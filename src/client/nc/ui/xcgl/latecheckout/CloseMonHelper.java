@@ -14,8 +14,6 @@ import nc.vo.xcgl.latecheckout.CloseMonBodyVO;
 import nc.vo.xcgl.latecheckout.CloseMonHeaderVO;
 import nc.vo.xcgl.latecheckout.CloseMonVO;
 import nc.vo.xcgl.pub.consts.PubOtherConst;
-import nc.vo.xcgl.salepresettle.AggSalepresettleVO;
-import nc.vo.xcgl.salepresettle.SalepresettleBVO;
 /**
  * 月末结账工具类
  * @author mlr

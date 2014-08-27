@@ -59,27 +59,46 @@ public class Price {
 	private UFDate settleDate = null;
 
 	private UFDate sendDate = null;
-
+    
+	int round=4;
+	
 	// 计算精粉的含税单价=计价金属金额之和/精粉数量
 	public void calPowerPrice(SalepresettleBVO[] bvos) {
 		UFDouble taxmny = new UFDouble(0);
 		for (int i = 0; i < bvos.length; i++) {
 			if (PuPubVO.getUFBoolean_NullAs(bvos[i].getUimpurity(),
 					new UFBoolean(false)).booleanValue() == true) {
-				UFDouble ntaxsum = PuPubVO.getUFDouble_NullAsZero(
-						bvos[i].getNamounted())
-						.multiply(bvos[i].getNtaxprice());
-				taxmny = taxmny.add(ntaxsum);
+			    
+				UFDouble num = PuPubVO.getUFDouble_NullAsZero(
+						bvos[i].getNamounted()).setScale(round, UFDouble.ROUND_UP);
+							    
+			    bvos[i].setNamounted(num);
+			    
+			    UFDouble price=PuPubVO.getUFDouble_NullAsZero(
+			    		bvos[i].getNtaxprice().setScale(round, UFDouble.ROUND_UP));
+			    
+			    bvos[i].setNtaxprice(price);
+						
+			    UFDouble mny=(num.multiply(price)).setScale(round, UFDouble.ROUND_UP);
+			    				
+				taxmny = taxmny.add(mny);
 			}
 		}
-		UFDouble num = PuPubVO.getUFDouble_NullAsZero(bvos[0].getNamounted());
+		UFDouble num = PuPubVO.getUFDouble_NullAsZero(bvos[0].getNamounted()).setScale(round, UFDouble.ROUND_UP);
+		bvos[0].setNamounted(num);
 		if (PuPubVO.getUFBoolean_NullAs(bvos[0].getUreserve1(),
 				new UFBoolean(false)).booleanValue() == true) {
-			taxmny = PuPubVO.getUFDouble_NullAsZero(bvos[0].getNreserve2())
+			
+			UFDouble price=PuPubVO.getUFDouble_NullAsZero(bvos[0].getNreserve2()).setScale(round, UFDouble.ROUND_UP);
+			
+			bvos[0].setNreserve2(price);
+			
+			taxmny = (price)
 					.multiply(num);
 		}
-		UFDouble ntaxprice = taxmny.div(num);
-		bvos[0].setNtaxprice(ntaxprice);
+		taxmny=taxmny.setScale(round, UFDouble.ROUND_UP);
+		UFDouble ntaxprice = taxmny.div(num);			
+		bvos[0].setNtaxprice(ntaxprice.setScale(round, UFDouble.ROUND_UP));		
 	}
 
 	/**

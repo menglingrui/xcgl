@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nc.ui.pub.print.version55.print.output.excel.core.ExcelException;
-import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.controller.IControllerBase;
 import nc.ui.trade.manage.BillManageUI;
 import nc.ui.xcgl.pub.bill.XCFlowManageEventHandler;

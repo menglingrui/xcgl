@@ -53,7 +53,7 @@ public class CHGXC13TOXC31 extends nc.bs.pf.change.VOConversion {
 				"H_pk_beltline->H_pk_beltline",
 				"H_pk_classorder->H_pk_classorder",
 				"H_isresel->H_isresel",
-//				"B_vsamplenumber->B_vsamplenumber",//样品编码					 
+				"H_vsamplenumber->H_vsamplenumber",//样品编码					 
 //				"B_pk_measdoc->B_pk_measdoc",//计量单位				
 //				"B_vlastbillcode->H_vbillno",
 //				"B_vlastbillid->H_pk_sample",

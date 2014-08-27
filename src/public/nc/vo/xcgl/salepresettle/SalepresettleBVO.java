@@ -63,6 +63,10 @@ public class SalepresettleBVO extends XCHYChildSuperVO{
 	 * 品位
 	 */
 	private UFDouble ngrade;
+	/**
+	 * 精粉价税合计实际金额
+	 */
+	public UFDouble nreserve7;
 	
 	/**
 	 * 调整后品位
@@ -92,6 +96,14 @@ public class SalepresettleBVO extends XCHYChildSuperVO{
 	
 
 
+
+	public UFDouble getNreserve7() {
+		return nreserve7;
+	}
+
+	public void setNreserve7(UFDouble nreserve7) {
+		this.nreserve7 = nreserve7;
+	}
 
 	public UFBoolean getUreserve2() {
 		return ureserve2;
