@@ -46,7 +46,7 @@ public class ReportSql {
 		sql.append(" from "+getFlouryieldBaseSql(wheresql)+" ");
 		sql.append(" join "+getBaseOreProcessingSql(wheresql)+"  ");
 //		public static String[] mapkey={"pk_corp","pk_factory","pk_beltline","pk_classorder",
-//	        "pk_minarea","pk_oreinvmandoc","vreserve1","dbilldate"};
+//	    "pk_minarea","pk_oreinvmandoc","vreserve1","dbilldate"};
 		sql.append(" on  h.pk_corp=b.pk_corp");
 		sql.append(" and h.pk_factory=b.pk_factory ");
 		sql.append(" and h.pk_beltline=b.pk_beltline ");
