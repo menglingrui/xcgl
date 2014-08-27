@@ -148,6 +148,6 @@ private void setParameter(String key,Object val)	{
 	   WriteBackTool.setVsourcebillrowid("vlastbillrowid");
 	   WriteBackTool.setVsourcebilltype("vlastbilltype");
 	   WriteBackTool.writeBack(vos, "xcgl_general_b", "pk_general_b",
-			   new String[]{"nwetweight"}, new String[]{"noutnum"},new String[]{"nwetweight"});	
+			   new String[]{"ndryweight"}, new String[]{"noutnum"},new String[]{"ndryweight"});	
 	}
 }

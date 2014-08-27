@@ -14,6 +14,7 @@ public class Controller extends   AbstractManageController{
 
 
 	public String[] getCardBodyHideCol() {
+		
 		return null;
 	}
 

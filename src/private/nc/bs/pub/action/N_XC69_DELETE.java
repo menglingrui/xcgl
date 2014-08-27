@@ -84,6 +84,6 @@ public class N_XC69_DELETE extends AbstractCompiler2 {
 		   WriteBackTool.setVsourcebillrowid("vlastbillrowid");
 		   WriteBackTool.setVsourcebilltype("vlastbilltype");
 		   WriteBackTool.writeBack(vos, "xcgl_general_b", "pk_general_b",
-				   new String[]{"nwetweight"}, new String[]{"noutnum"},new String[]{"nwetweight"});	
+				   new String[]{"ndryweight"}, new String[]{"noutnum"},new String[]{"ndryweight"});	
 		}
 }

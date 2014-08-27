@@ -17,6 +17,7 @@ import nc.vo.scm.pu.PuPubVO;
 import nc.vo.scm.pub.vosplit.SplitBillVOs;
 import nc.vo.sm.nodepower.OrgnizeTypeVO;
 import nc.vo.zmpub.pub.report.ReportBaseVO;
+import nc.vo.zmpub.pub.report2.CombinVO;
 import nc.vo.zmpub.pub.report2.ZmReportBaseUI3;
 /**
  * 选厂日报(汇总)
@@ -31,6 +32,20 @@ public class RepSumClientUI extends ZmReportBaseUI3 {
 	 */
 	public static String[] mapkey={"pk_corp","pk_factory","pk_beltline","pk_classorder",
         "pk_minarea","pk_oreinvmandoc","vreserve1","dbilldate"};
+	
+	public static String[] combinConditions={"pk_corp","pk_factory","pk_beltline",
+		"pk_minarea","pk_oreinvmandoc","vmonth"};
+	public static String[] combinFields={"nwetnum","ndrynum","pb_noutnum",
+		"zn_noutnum","ptm_pb","ptm_zn","pbtm_ag","zn_noutnum","pbtm_pb",
+		"zntm_zn","pb_tmag"};
+	
+	public static String[] AverageConditions={"pk_corp","pk_factory","pk_beltline",
+		"pk_minarea","pk_oreinvmandoc","vmonth"}; 
+	
+	public static String[] AveragecombinFields={"ore_pb","ore_zn","ore_ag",
+		"pb_pb","pb_zn","pb_ag","zn_pb","zn_zn","pbt_pb",
+		"pbt_ag","znt_zn"};
+	
 	//
 	//固定单元格字段列表 name
 	//选场，班次，开机时间,原矿,处理量湿量(吨）,原矿水分(%),处理量干量(吨）,Pb(%),Zn(%),Ag(g/t)
@@ -210,8 +225,20 @@ public class RepSumClientUI extends ZmReportBaseUI3 {
 		}
 		if(list.get(0)==null || list.get(0).length==0){
 			return null;
-		}   	
-		return getDealVO(list.get(0));
+		} 
+		ReportBaseVO[] vos=getDealVO(list.get(0));
+		
+		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
+				(ReportBaseVO[])ObjectUtils.serializableClone(vos), combinConditions, combinFields);
+		
+		ReportBaseVO[] avgvos=CombinVO.averageData(
+				(ReportBaseVO[])ObjectUtils.serializableClone(vos), AverageConditions, AveragecombinFields);
+		
+		
+	    CombinVO.copyValueByContion(
+	    		  sumvos,avgvos, AverageConditions, AveragecombinFields);
+		
+		return sumvos;
 	}
 
 	private ReportBaseVO[] getDealVO(ReportBaseVO[] vos) throws BusinessException {

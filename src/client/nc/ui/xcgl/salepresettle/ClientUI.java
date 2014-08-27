@@ -22,7 +22,7 @@ import nc.vo.xcgl.pub.consts.PubNodeModelConst;
  * @author lxh
  */
 @SuppressWarnings("serial")
-public class ClientUI extends XCDefBillManageUI  { 
+public class ClientUI extends XCDefBillManageUI{ 
 	
 	public boolean isLinkQueryEnable() {
 		return true;
@@ -107,7 +107,6 @@ public class ClientUI extends XCDefBillManageUI  {
 	}
 	@Override
 	public boolean isStockBill() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

@@ -1,11 +1,9 @@
 package nc.ui.xcgl.salesettle;
 
 import java.awt.Container;
-
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.trade.controller.IControllerBase;
 import nc.ui.xcgl.pub.bill.XCMBillSourceDLG;
-import nc.ui.xcgl.pub.bill.XCMBillSourceDLG2;
 
 public class BillSourceDlg extends XCMBillSourceDLG{
 	private static final long serialVersionUID = -4908986743054244885L;
