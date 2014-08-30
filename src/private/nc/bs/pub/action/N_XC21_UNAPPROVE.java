@@ -30,16 +30,16 @@ public class N_XC21_UNAPPROVE extends AbstractCompiler2 {
 			super.m_tmpVo = vo;
 			
 		
-			AutoIcBillBO icbo=new AutoIcBillBO();
-			icbo.dealOnUnApprove(getVo(), 
-		    		vo.m_currentDate, 
-		    		vo.m_operator,
-		    		true,
-		    		"46",
-		    		false,
-		    		ScmConst.m_otherOut,
-		    		true,
-		    		false);
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//			icbo.dealOnUnApprove(getVo(), 
+//		    		vo.m_currentDate, 
+//		    		vo.m_operator,
+//		    		true,
+//		    		"46",
+//		    		false,
+//		    		ScmConst.m_otherOut,
+//		    		true,
+//		    		false);
 			
 			
 			

@@ -2,7 +2,6 @@ package nc.ui.xcgl.weighdoc;
 
 import nc.ui.scm.pub.sourceref.BillRefListPanel;
 import nc.ui.scm.pub.sourceref.DefaultSrcRefCtl;
-import nc.ui.to.icredun.SourceRefDlgCtrl5XTo4Y;
 import nc.ui.to.pub.TOBillTool;
 import nc.vo.pub.CircularlyAccessibleValueObject;
 import nc.vo.to.pub.BillItemVO;

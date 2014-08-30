@@ -8,7 +8,6 @@ import nc.vo.pub.lang.UFDouble;
  */
 public class ReportDaySumVO extends SuperVO{
 	
-
 	private static final long serialVersionUID = -1661383706333407322L;
 //	create table xcgl_reportdaysum(
 //			pk_corp char(20),

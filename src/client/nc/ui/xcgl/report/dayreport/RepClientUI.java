@@ -8,11 +8,7 @@ import javax.swing.table.TableColumnModel;
 import nc.ui.pub.beans.UITable;
 import nc.ui.pub.beans.table.ColumnGroup;
 import nc.ui.pub.beans.table.GroupableTableHeader;
-import nc.ui.scm.util.ObjectUtils;
 import nc.ui.trade.report.query.QueryDLG;
-import nc.vo.pub.BusinessException;
-import nc.vo.pub.lang.UFDouble;
-import nc.vo.scm.pu.PuPubVO;
 import nc.vo.scm.pub.vosplit.SplitBillVOs;
 import nc.vo.sm.nodepower.OrgnizeTypeVO;
 import nc.vo.zmpub.pub.report.ReportBaseVO;
@@ -25,11 +21,8 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	private static final long serialVersionUID = 1L;
 	//报表功能节点号 2002AC021525
 	private QueryClientDLG m_qryDlg;
-	/**
-	 * 产量计算的最小维度
-	 */
-	public static String[] mapkey={"pk_corp","pk_factory","pk_beltline","pk_classorder",
-        "pk_minarea","pk_oreinvmandoc","vreserve1","dbilldate"};
+    
+	private List<Integer> rowformulas=new ArrayList<Integer>();
 	//
 	//固定单元格字段列表 name
 	//选场，班次，开机时间,原矿,处理量湿量(吨）,原矿水分(%),处理量干量(吨）,Pb(%),Zn(%),Ag(g/t)
@@ -200,9 +193,22 @@ public class RepClientUI extends ZmReportBaseUI3 {
 		super();
 		setColumn();
 	}
-	  /**
+	/**
+	 * 查询完成 设置到ui界面之后 后续处理
+	 * @author mlr
+	 * @说明：（鹤岗矿业） 2011-12-22上午10:42:36
+	 * @param list
+	 * @return
+	 */
+	public void dealQueryAfter() throws Exception {
+		super.dealQueryAfter();
+		for(int i=0;i<rowformulas.size();i++){
+			getReportBase().getBillModel().execFormula(rowformulas.get(i), DayReportTool.formulas);
+		}
+	}
+	 /**
 	
-		 */
+    */
 	public ReportBaseVO[] dealBeforeSetUI(List<ReportBaseVO[]> list)throws Exception{
 		if(list ==null || list.size()==0){
 			return null;
@@ -214,164 +220,36 @@ public class RepClientUI extends ZmReportBaseUI3 {
 		return getDealVO(list.get(0));
 	}
 
-	private ReportBaseVO[] getDealVO(ReportBaseVO[] vos) throws BusinessException {
+	private ReportBaseVO[] getDealVO(ReportBaseVO[] vos) throws Exception {
 		if(vos==null || vos.length==0){
 			return null;
 		}
-		List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();
-		ReportBaseVO[][] voss=(ReportBaseVO[][]) SplitBillVOs.getSplitVOs(vos, mapkey);
-		for(int i=0;i<voss.length;i++){
-			ReportBaseVO[] bvos=voss[i];
-			ReportBaseVO vo=getDealOreVO(bvos);
-			dealPowerAndTail(vo,bvos);		
-			list.add(vo);
-		}
-		return list.toArray(new ReportBaseVO[0]);
+		vos=DayReportTool.getDealVO(vos);	
+//		rowformulas.clear();
+//		//处理日累计，月累计，季累计，年累计
+//		List<ReportBaseVO> rlist=new ArrayList<ReportBaseVO>();
+//		ReportBaseVO[][] rvoss=(ReportBaseVO[][]) SplitBillVOs.getSplitVOs(vos, DayReportTool.daymapkey);
+//		for(int i=0;i<rvoss.length;i++){
+//			ReportBaseVO[] dvos=rvoss[i];	
+//			for(int j=0;j<dvos.length;j++){
+//				rlist.add(dvos[j]);
+//			}
+//			ReportBaseVO dayvo=DayReportTool.getDayReportVO(dvos);
+//			ReportBaseVO monthvo=DayReportTool.getMonthReportVO(dvos);
+//			ReportBaseVO quartervo=DayReportTool.getQuarterVO(dvos);
+//			ReportBaseVO yearvo=DayReportTool.getYearVO(dvos);
+//			rlist.add(dayvo);
+//			rowformulas.add(rlist.size()-1);
+//			rlist.add(monthvo);
+//			rowformulas.add(rlist.size()-1);
+//			rlist.add(quartervo);
+//			rowformulas.add(rlist.size()-1);
+//			rlist.add(yearvo);		
+//			rowformulas.add(rlist.size()-1);
+//		}
+		return vos;
 	}
-
-	public void dealPowerAndTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
-		dealPbPower(vo,bvos);
-		dealZnPower(vo,bvos);
-		dealPbTail(vo,bvos);
-		dealZnTail(vo,bvos);	    
-	}
-
-	private void dealZnTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
-	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Pb_index);
-		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
-	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,);
-		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
-    	//zn_noutnum,zn_pb, zn_zn
-        vo.setAttributeValue("znt_pb", Pbgrade);
-	    vo.setAttributeValue("znt_zn", Zngrade);
-	 //   vo.setAttributeValue("znt_noutnum", noutnum);
-	    vo.setAttributeValue("zntm_zn", Znnoutmetalnum);
-	}
-
-	private void dealPbTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
-	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
-	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
-		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Zn_index);
-	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
-		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
-		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
-        vo.setAttributeValue("pbt_pb", Pbgrade);
-	    vo.setAttributeValue("pbt_ag", Aggrade);
-	    vo.setAttributeValue("pbt_zn", Zngrade);
-	//    vo.setAttributeValue("pbt_noutnum", noutnum);
-	    vo.setAttributeValue("pbtm_pb", Pbnoutmetalnum);
-	    vo.setAttributeValue("pbtm_ag", Agnoutmetalnum);
-	}
-
-	private void dealZnPower(ReportBaseVO vo, ReportBaseVO[] bvos) {
-	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Pb_index);
-		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-        UFDouble Znrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-    	//zn_noutnum,zn_pb, zn_zn
-        vo.setAttributeValue("zn_pb", Pbgrade);
-	    vo.setAttributeValue("zn_zn", Zngrade);
-	    vo.setAttributeValue("zn_noutnum", noutnum);
-	    vo.setAttributeValue("znm_zn", Znnoutmetalnum);
-	    vo.setAttributeValue("zn_zn_recrate", Znrecrate);
-	}
-
-	private void dealPbPower(ReportBaseVO vo, ReportBaseVO[] bvos) {
-	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
-	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
-		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Zn_index);
-		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
-		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
-		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
-        UFDouble Pbrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
-        UFDouble Agrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
-    	//pb_noutnum,pb_pb,pb_zn,pb_ag
-        vo.setAttributeValue("pb_pb", Pbgrade);
-	    vo.setAttributeValue("pb_ag", Aggrade);
-	    vo.setAttributeValue("pb_zn", Zngrade);
-	    vo.setAttributeValue("pb_noutnum", noutnum);
-	    vo.setAttributeValue("ptm_pb", Pbnoutmetalnum);
-	    vo.setAttributeValue("ptm_ag", Agnoutmetalnum);
-	    vo.setAttributeValue("pb_pb_recrate", Pbrecrate);
-	    vo.setAttributeValue("pb_ag_recrate", Agrecrate);
-	}
-
-	public UFDouble getNRecRate(ReportBaseVO[] bvos, String type_power,
-			String pb_power, String pb_index) {
-		for(int i=0;i<bvos.length;i++){
-			if(pb_power.equals(bvos[i].getAttributeValue("pk_invbasdoc"))){
-				if(pb_index.equals(bvos[i].getAttributeValue("pk_invindex"))){
-				   return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("nrecover"));
-				}   
-			}
-		}
-		return new UFDouble(0);
-	}
-
-	public UFDouble getNoutMetalNum(ReportBaseVO[] bvos, String type_power,
-			String pb_power, String pb_index) {
-		for(int i=0;i<bvos.length;i++){
-			if(pb_power.equals(bvos[i].getAttributeValue("pk_invbasdoc"))){
-				if(pb_index.equals(bvos[i].getAttributeValue("pk_invindex"))){
-				    return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("nmetalamount"));
-				}
-			}
-		}
-		return new UFDouble(0);
-	}
-
-	private UFDouble getNoutNum(ReportBaseVO[] bvos, String type_power,
-			String pb_power,String pk_invdex) {
-		for(int i=0;i<bvos.length;i++){
-			if(pb_power.equals(bvos[i].getAttributeValue("pk_invbasdoc"))){
-				if(pk_invdex.equals(bvos[i].getAttributeValue("pk_invindex"))){
-				   return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("noutput"));
-				}
-			}
-		}
-		return new UFDouble(0);
-	}
-
-	private UFDouble getGrade(ReportBaseVO[] bvos, String type_power,
-			String pb_power, String pb_index) {
-		if(type_power.equals(DayReportConst.type_ore)){
-			for(int i=0;i<bvos.length;i++){
-				if(pb_index.equals(bvos[i].getAttributeValue("pk_invindex"))){
-					return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("ncrudescontent"));
-				}
-			}
-		}else{
-			for(int i=0;i<bvos.length;i++){
-			  
-				if(pb_power.equals(bvos[i].getAttributeValue("pk_invbasdoc"))){
-					if(pb_index.equals(bvos[i].getAttributeValue("pk_invindex"))){
-						return PuPubVO.getUFDouble_NullAsZero(bvos[i].getAttributeValue("ncontent"));
-					}
-					
-				}
-			}
-		}		
-		return new UFDouble(0);
-	}
-
-	public ReportBaseVO getDealOreVO(ReportBaseVO[] bvos) throws BusinessException {
-		try {
-			 ReportBaseVO vo=(ReportBaseVO) ObjectUtils.serializableClone(bvos[0]);
-			 UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Pb_index);
-		     UFDouble Aggrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Ag_index);
-			 UFDouble Zngrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Zn_index);
-			 vo.setAttributeValue("ore_pb", Pbgrade);
-			 vo.setAttributeValue("ore_ag", Aggrade);
-			 vo.setAttributeValue("ore_zn", Zngrade);
-			 return vo;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new BusinessException(e);
-		}
-
-	}
-    
+	
 	public QueryDLG getQueryDlg() {
 		if (m_qryDlg == null) {
 			m_qryDlg = new QueryClientDLG(this);

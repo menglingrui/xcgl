@@ -59,12 +59,12 @@ public class N_XC21_APPROVE extends AbstractCompiler2 {
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
 			
-			// **自动生成供应链其他入库单**##########yangtao
-			AutoIcBillBO icbo=new AutoIcBillBO();
-			
-		
-			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "46", false, true, false);
-			//======================================================
+//			// **自动生成供应链其他入库单**##########yangtao
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//			
+//		
+//			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "46", false, true, false);
+//			//======================================================
 			
 			return retObj;
 		} catch (Exception ex) {

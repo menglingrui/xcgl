@@ -58,9 +58,9 @@ public class N_XC15_APPROVE extends AbstractCompiler2 {
 			retObj = runClass("nc.bs.xcgl.pub.HYBillApprove", "approveHYBill",
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
-			AutoIcBillBO icbo=new AutoIcBillBO();
-
-			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4D", true, true, false);
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//
+//			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4D", true, true, false);
 			
 			return retObj;
 		} catch (Exception ex) {

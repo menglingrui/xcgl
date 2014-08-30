@@ -31,16 +31,16 @@ public class N_XC68_UNAPPROVE extends AbstractCompiler2 {
 		  // ####本脚本必须含有返回值,返回DLG和PNL的组件不允许有返回值####
 			setParameter("currentVo", vo.m_preValueVo);
 			
-			AutoIcBillBO icbo=new AutoIcBillBO();
-			icbo.dealOnUnApprove(getVo(), 
-		    		vo.m_currentDate, 
-		    		vo.m_operator,
-		    		false,
-		    		ScmConst.m_otherIn,
-		    		true,
-		    		ScmConst.m_otherOut,
-		    		false,
-		    		true);
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//			icbo.dealOnUnApprove(getVo(), 
+//		    		vo.m_currentDate, 
+//		    		vo.m_operator,
+//		    		false,
+//		    		ScmConst.m_otherIn,
+//		    		true,
+//		    		ScmConst.m_otherOut,
+//		    		false,
+//		    		true);
 			
 			//判断是否存在下游，若存在不允许弃审
 			 ZmPubTool.checkExitNextBill(PubBillTypeConst.billtype_genotherout,vo.m_preValueVo.getParentVO().getPrimaryKey());

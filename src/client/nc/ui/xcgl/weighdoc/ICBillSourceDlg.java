@@ -3,22 +3,17 @@ package nc.ui.xcgl.weighdoc;
 
 import java.awt.Container;
 
-import nc.ui.ic.pub.pf.ICBillRefListPanel;
-import nc.ui.ic.pub.pf.ICSourceBillToBillBaseUI;
 import nc.ui.ic.pub.pf.ICSourceRefBaseDlg;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.change.PfChangeBO_Client;
 import nc.ui.pub.para.SysInitBO_Client;
-import nc.ui.querytemplate.IBillReferQuery;
-import nc.ui.scm.pub.sourceref.BillToBillRefPanel.ShowState;
 import nc.ui.scm.pub.sourceref.BillRefListPanel;
+import nc.ui.scm.pub.sourceref.BillToBillRefPanel.ShowState;
 import nc.ui.scm.pub.sourceref.IBillReferQueryProxy;
-import nc.vo.ic.pub.BillTypeConst;
 import nc.vo.ic.pub.ICConst;
 import nc.vo.ic.pub.bill.IItemKey;
 import nc.vo.ic.pub.billtype.BillTypeFactory;
 import nc.vo.ic.pub.billtype.IBillType;
-import nc.vo.ic.pub.billtype.ModuleCode;
 import nc.vo.pub.AggregatedValueObject;
 import nc.vo.pub.BusinessException;
 import nc.vo.scm.ic.ATPVO;

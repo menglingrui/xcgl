@@ -31,7 +31,7 @@ import nc.vo.xcgl.salepresettle.SalepresettleBVO;
 import nc.vo.xcgl.salepresettle.SalepresettleHVO;
 
 public class XCFlowManageEventHandler extends FlowManageEventHandler {
-	String pk_corp = ClientEnvironment.getInstance().getCorporation()
+	public String pk_corp = ClientEnvironment.getInstance().getCorporation()
 			.getPrimaryKey();
 
 	public XCFlowManageEventHandler(BillManageUI billUI, IControllerBase control) {

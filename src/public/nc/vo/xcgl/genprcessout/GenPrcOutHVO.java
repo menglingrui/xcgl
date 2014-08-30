@@ -82,6 +82,16 @@ public class GenPrcOutHVO extends PubGeneralHVO {
 	 */
 	private String pk_restype;
 	
+	public String errmsg;
+	
+	
+	
+	public String getErrmsg() {
+		return errmsg;
+	}
+	public void setErrmsg(String errmsg) {
+		this.errmsg = errmsg;
+	}
 	public String getVdef20() {
 		return vdef20;
 	}

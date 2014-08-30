@@ -59,9 +59,9 @@ public class N_XC68_APPROVE extends AbstractCompiler2 {
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
 			
-			AutoIcBillBO icbo=new AutoIcBillBO();
-		
-			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4I", true, true, false);
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//		
+//			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4I", true, true, false);
 			
 			return retObj;
 		} catch (Exception ex) {

@@ -63,13 +63,13 @@ public class N_XC78_APPROVE extends AbstractCompiler2 {
 					"nc.vo.pub.AggregatedValueObject:01", vo, m_keyHas,
 					m_methodReturnHas);
 			//======================================================
-			//生成供应链其他入库单
-		    //供应链其他入库单单据类型 4A
-			AutoIcBillBO icbo=new AutoIcBillBO();
-			
-			
-			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4A", false, true, false);
-			//======================================================
+//			//生成供应链其他入库单
+//		    //供应链其他入库单单据类型 4A
+//			AutoIcBillBO icbo=new AutoIcBillBO();
+//			
+//			
+//			icbo.autoGenIcBill(XcPubTool.fliterPowder((HYBillVO)getVo()),vo , "4A", false, true, false);
+//			//======================================================
 			
 			return retObj;
 		} catch (Exception ex) {
