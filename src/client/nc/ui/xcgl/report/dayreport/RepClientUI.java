@@ -32,7 +32,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	//Zn(%)---->锌尾
 	//铅精粉Pb(%),铅精粉Ag(%),锌精粉Zn(%)
 	//Pb(t),Zn(t),Ag(kg)---->铅精粉金属量
-	//Pb(t),Zn(t)----->锌精粉金属量
+	//Pb(t),Zn(t)----->锌精粉金属量	
 	//Pb(t),Zn(t),银(Kg)---->尾矿金属量
 	//铅精矿,锌精矿(回收率)
 	
