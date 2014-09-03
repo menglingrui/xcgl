@@ -45,11 +45,13 @@ public abstract class XCDefBillManageUI extends DefBillManageUI{
 	
 	@Override
 	public void afterEdit(BillEditEvent e) {
-     //super.afterEdit(e);
+   //  super.afterEdit(e);
 	 String key = e.getKey();
 	 if(BillItem.HEAD == e.getPos()){		
 	     if("pk_invmandoc".equalsIgnoreCase(key) || "vdef20".equalsIgnoreCase(key)){
 				 getBillCardPanel().execHeadEditFormulas();
+	     }else{
+	    	     getBillCardPanel().execHeadTailEditFormulas(getBillCardPanel().getHeadItem(key));
 	     }
 	 }
 	 if("invname".equalsIgnoreCase(key)&&e.getPos()==IBillItem.BODY){
@@ -80,6 +82,8 @@ public abstract class XCDefBillManageUI extends DefBillManageUI{
 				this.showErrorMessage(e1.getMessage());
 				e1.printStackTrace();
 			}	
+		}else{
+			getBillCardPanel().getBillModel().execEditFormulaByKey(e.getRow(), e.getKey());
 		}
 	 
 	}

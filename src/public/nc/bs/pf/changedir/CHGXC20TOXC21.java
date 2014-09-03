@@ -216,7 +216,7 @@ public class CHGXC20TOXC21 extends  nc.bs.pf.change.VOConversion{
 				"B_pk_father->B_pk_father",
 				"B_vcrowno->B_vcrowno",
 				"H_pk_minarea->B_pk_deptdoc",
-				"H_pk_stordoc->B_pk_stordoc",
+				"H_pk_stordoc->H_pk_stordoc",
 				"B_pk_measdoc->B_pk_measdoc",
 				
 				"B_vlastbillcode->H_vbillno",
