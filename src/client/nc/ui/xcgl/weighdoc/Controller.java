@@ -18,7 +18,6 @@ public class Controller extends AbstractManageController{
 	public int[] getCardButtonAry() {
 		return new int[]{
 				IBillButton.Busitype,
-
 				IBillButton.Add,		//增加
 				IBillButton.Edit,       //修改
 				IBillButton.Query,      //查询
@@ -37,11 +36,11 @@ public class Controller extends AbstractManageController{
 	}
 
 	public boolean isShowCardRowNo() {
-		return false;
+		return true;
 	}
 
 	public boolean isShowCardTotal() {
-		return false;
+		return true;
 	}
 
 	public String getBillType() {
@@ -125,7 +124,7 @@ public class Controller extends AbstractManageController{
 	}
 
 	public boolean isShowListTotal() {
-		return false;
+		return true;
 	}
 
 }

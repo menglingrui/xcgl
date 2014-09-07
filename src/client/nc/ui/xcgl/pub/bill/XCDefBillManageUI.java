@@ -94,8 +94,6 @@ public abstract class XCDefBillManageUI extends DefBillManageUI{
 	public boolean isSetLockNum() {
 		return false;
 	}
-
-
 	/**
 	 * 
 	 * @param row

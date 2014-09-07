@@ -119,7 +119,6 @@ public class ClientUI extends XCDefBillManageUI{
 
 	@Override
 	public boolean isStockBill() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

@@ -1952,24 +1952,20 @@ public class CalProduceBO {
 							.getMainnumvo().getPk_invmandoc(), forvos);
 					if (provos != null && provos.size() > 0) {
 						for(int n=0;n<provos.size();n++){
-							ProSetFormulaVO provo = provos.get(n);
-							
-							
+							ProSetFormulaVO provo = provos.get(n);														
 							if (provo.isShareTailFormula() == false) {
 								/**
 								 * 初始化公式
 								 */
 								initBtailsFormula(provo, bb1vo, calvo.getMainnumvo(),
 										-3);
-
 								provo.setShareTailFormula(true);
 								/**
 								 * 设置执行公式
 								 */
 								if(provo.getInvtype()==ProSetEnum.Bpowder){
 									initTailFormulas(provo, bb1vo);
-								}
-								
+								}								
 							}else{
 								/**
 								 * 初始化公式
@@ -1981,22 +1977,16 @@ public class CalProduceBO {
 								/**
 								 * 初始化公式
 								 */
-                                if(provo.getInvtype()==ProSetEnum.Bpowder){
-                                	initBtailsFormula(cprovo, bb1vo, calvo.getMainnumvo(),
+                                initBtailsFormula(cprovo, bb1vo, calvo.getMainnumvo(),
     										-3);
-								}
-							
-
-								cprovo.setShareTailFormula(true);
-								
-								
+								cprovo.setShareTailFormula(true);														
 								/**
 								 * 设置执行公式
-								 */
-								initTailFormulas(cprovo, bb1vo);
-								
-								forvos.add(cprovo);
-								
+								 */								
+								if(provo.getInvtype()==ProSetEnum.Bpowder){
+									initTailFormulas(cprovo, bb1vo);
+								}								
+								forvos.add(cprovo);								
 							}
 						}
 						
@@ -2026,7 +2016,7 @@ public class CalProduceBO {
 									 */
 									 if(provo.getInvtype()==ProSetEnum.Bpowder){
 										 initTailFormulas(provo, bb1vo);
-										}
+									 }
 									
 								}else{
 									/**
@@ -2119,26 +2109,20 @@ public class CalProduceBO {
 									 * 初始化公式
 									 */
 									initCtailsFormula(provo, bb1vo, calvo.getMainnumvo(),
-											-3);
-									
+											-3);									
 									ProSetFormulaVO cprovo=(ProSetFormulaVO) ObjectUtils.serializableClone(provo);
 									/**
 									 * 初始化公式
 									 */
 									initCtailsFormula(cprovo, bb1vo, calvo.getMainnumvo(),
 											-3);
-
-									cprovo.setShareTailFormula(true);
-									
-									
+									cprovo.setShareTailFormula(true);																		
 									/**
 									 * 设置执行公式
 									 */
                                     if(provo.getInvtype()==ProSetEnum.Cpowder){
                                     	initTailFormulas(cprovo, bb1vo);
-									}
-								
-									
+									}																	
 									forvos.add(cprovo);
 									
 								} 
@@ -2160,7 +2144,6 @@ public class CalProduceBO {
     								 */
     								initCtailsFormula(provo, bb1vo, calvo.getNumList()
     										.get(j), -3);
-
     								provo.setShareTailFormula(true);
     								/**
     								 * 设置执行公式
@@ -2174,34 +2157,24 @@ public class CalProduceBO {
     								 * 初始化公式
     								 */
     								initCtailsFormula(provo, bb1vo, calvo.getNumList()
-    										.get(j), -3);
-    								
+    										.get(j), -3);    								
     								ProSetFormulaVO cprovo=(ProSetFormulaVO) ObjectUtils.serializableClone(provo);
     								/**
     								 * 初始化公式
     								 */
     								initCtailsFormula(cprovo, bb1vo, calvo.getNumList()
     										.get(j), -3);
-
-    								cprovo.setShareTailFormula(true);
-    								
-    								
+    								cprovo.setShareTailFormula(true);   								   								
     								/**
     								 * 设置执行公式
     								 */
     								   if(provo.getInvtype()==ProSetEnum.Cpowder){
     									   initTailFormulas(cprovo, bb1vo);
-   									}
-    								
-    								
-    								forvos.add(cprovo);
-    								
+   									}   								    								
+    								forvos.add(cprovo);    								
     							}
 							}
-					
-						
-					
-						}
+					}
 					}
 				}
 
