@@ -6,6 +6,7 @@ import nc.ui.pub.beans.UITable;
 import nc.ui.pub.beans.table.ColumnGroup;
 import nc.ui.pub.beans.table.GroupableTableHeader;
 import nc.ui.trade.report.query.QueryDLG;
+import nc.vo.scm.pub.vosplit.SplitBillVOs;
 import nc.vo.sm.nodepower.OrgnizeTypeVO;
 import nc.vo.zmpub.pub.report.ReportBaseVO;
 import nc.vo.zmpub.pub.report2.ZmReportBaseUI3;
@@ -72,8 +73,11 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	}
 
 	public String getBaseSql() {
-		
-		return ReportSql.getBaseSql(" 1=1");
+		String wheresql=" 1=1 ";
+		if(getQueryDlg().getWhereSQL()!=null){
+			wheresql=wheresql+" and "+getQueryDlg().getWhereSQL();
+		}
+		return ReportSql.getBaseSql(wheresql);
 	}
     /**
      * 基本列合并
@@ -234,7 +238,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
 	public void dealQueryAfter() throws Exception {
 		super.dealQueryAfter();
 		for(int i=0;i<rowformulas.size();i++){
-			getReportBase().getBillModel().execFormula(rowformulas.get(i), DayReportTool.formulas);
+			getReportBase().getBillModel().execFormulas(rowformulas.get(i), DayReportTool.formulas);
 		}
 	}
 	 /**
@@ -256,29 +260,37 @@ public class RepClientUI extends ZmReportBaseUI3 {
 			return null;
 		}
 		vos=DayReportTool.getDealVO(vos);	
-//		rowformulas.clear();
-//		//处理日累计，月累计，季累计，年累计
-//		List<ReportBaseVO> rlist=new ArrayList<ReportBaseVO>();
-//		ReportBaseVO[][] rvoss=(ReportBaseVO[][]) SplitBillVOs.getSplitVOs(vos, DayReportTool.daymapkey);
-//		for(int i=0;i<rvoss.length;i++){
-//			ReportBaseVO[] dvos=rvoss[i];	
-//			for(int j=0;j<dvos.length;j++){
-//				rlist.add(dvos[j]);
-//			}
-//			ReportBaseVO dayvo=DayReportTool.getDayReportVO(dvos);
-//			ReportBaseVO monthvo=DayReportTool.getMonthReportVO(dvos);
-//			ReportBaseVO quartervo=DayReportTool.getQuarterVO(dvos);
-//			ReportBaseVO yearvo=DayReportTool.getYearVO(dvos);
-//			rlist.add(dayvo);
-//			rowformulas.add(rlist.size()-1);
-//			rlist.add(monthvo);
-//			rowformulas.add(rlist.size()-1);
-//			rlist.add(quartervo);
-//			rowformulas.add(rlist.size()-1);
-//			rlist.add(yearvo);		
-//			rowformulas.add(rlist.size()-1);
-//		}
-		return vos;
+		rowformulas.clear();
+		//处理日累计，月累计，季累计，年累计
+		List<ReportBaseVO> rlist=new ArrayList<ReportBaseVO>();
+		ReportBaseVO[][] rvoss=(ReportBaseVO[][]) SplitBillVOs.getSplitVOs(vos, DayReportTool.daymapkey);
+		for(int i=0;i<rvoss.length;i++){
+			ReportBaseVO[] dvos=rvoss[i];	
+			for(int j=0;j<dvos.length;j++){
+				rlist.add(dvos[j]);
+			}
+			ReportBaseVO dayvo=DayReportTool.getDayReportVO(dvos);
+			dayvo.setAttributeValue("dbilldate", "日合计");
+			dayvo.setAttributeValue("classorder", "日合计");
+			ReportBaseVO monthvo=DayReportTool.getMonthReportVO(dvos);
+			monthvo.setAttributeValue("dbilldate", "月合计");
+			monthvo.setAttributeValue("classorder", "月合计");
+			ReportBaseVO quartervo=DayReportTool.getQuarterVO(dvos);
+			quartervo.setAttributeValue("dbilldate", "季度合计");
+			quartervo.setAttributeValue("classorder", "季度合计");
+			ReportBaseVO yearvo=DayReportTool.getYearVO(dvos);
+			yearvo.setAttributeValue("dbilldate", "年度合计");
+			yearvo.setAttributeValue("classorder", "年度合计");
+			rlist.add(dayvo);
+			rowformulas.add(rlist.size()-1);
+			rlist.add(monthvo);
+			rowformulas.add(rlist.size()-1);
+			rlist.add(quartervo);
+			rowformulas.add(rlist.size()-1);
+			rlist.add(yearvo);		
+			rowformulas.add(rlist.size()-1);
+		}
+		return rlist.toArray(new ReportBaseVO[0]);
 	}
 	
 	public QueryDLG getQueryDlg() {

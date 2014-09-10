@@ -32,7 +32,7 @@ public class RepSumClientUI extends ZmReportBaseUI3 {
 	public static String[] combinConditions={"pk_corp","pk_factory","pk_beltline",
 		"pk_minarea","pk_oreinvmandoc","vmonth"};
 	public static String[] combinFields={"nwetnum","ndrynum","pb_noutnum",
-		"zn_noutnum","ptm_pb","ptm_zn","pbtm_ag","zn_noutnum","pbtm_pb",
+		"ptm_pb","ptm_zn","pbtm_ag","zn_noutnum","pbtm_pb",
 		"zntm_zn","pb_tmag"};
 	
 	public static String[] AverageConditions={"pk_corp","pk_factory","pk_beltline",

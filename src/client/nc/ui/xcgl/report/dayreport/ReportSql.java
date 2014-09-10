@@ -56,7 +56,6 @@ public class ReportSql {
 		sql.append(" and h.vreserve1=b.vreserve1 ");
 		sql.append(" and h.dbilldate=b.dbilldate ");
 		sql.append(" ");
-		sql.append(" ");
 		return sql.toString();
 	}
 	
@@ -64,6 +63,9 @@ public class ReportSql {
 	 * 取计算数据
 	 */
 	public static String getFlouryieldBaseSql(String wheresql){
+		
+		wheresql=wheresql.replaceAll("%h%", "xcgl_flouryield_h");
+		wheresql=wheresql.replaceAll("%b%", "xcgl_flouryield_b");
 		StringBuffer sql=new StringBuffer();
 		//	选场，                        班次，                  开机时间,           原矿,  处理量湿量(吨）,原矿水分(%),处理量干量(吨）
 		//pk_factory，pk_classorder，starhours,  pk_oreinvmandoc,nwetnum,     nwater,  ,ndrynum    ,ore_pb,ore_zn,ore_ag
@@ -106,6 +108,8 @@ public class ReportSql {
 	 */
 	public static String getBaseOreProcessingSql(String wheresql){
 		StringBuffer sql=new StringBuffer();
+		wheresql=wheresql.replaceAll("%h%", "xcgl_general_h");
+		wheresql=wheresql.replaceAll("%b%", "xcgl_general_b");
 		//	选场，                       班次，                    开机时间,      原矿,       处理量湿量(吨）,原矿水分(%),处理量干量(吨）
 		//pk_factory，pk_classorder，starhours,  pk_oreinvmandoc,nwetnum,     nwater,  ,ndrynum    ,ore_pb,ore_zn,ore_ag
 		sql.append(" (select  ");

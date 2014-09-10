@@ -38,8 +38,8 @@ public class ReportSql {
 		sb.append("xcgl_weighdoc_b.nwatercontent,");
 		sb.append("xcgl_weighdoc_b.ndryamount,");
 		sb.append("xcgl_weighdoc_b.pk_vehicle, ");
-		sb.append("xcgl_weighdoc_b.*, ");
-		sb.append("xcgl_weighdoc.* ");
+		sb.append("xcgl_weighdoc_b.* ");
+	    // sb.append("xcgl_weighdoc.* ");
 		// sb.append("b.ndryweight,");
 		// sb.append("b.nlock,");
 		// sb.append("b.crowno,");

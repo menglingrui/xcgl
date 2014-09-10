@@ -2,10 +2,14 @@ package nc.ui.xcgl.report.dayreport;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
 import nc.bd.accperiod.AccountCalendar;
 import nc.bd.accperiod.InvalidAccperiodExcetion;
+import nc.bs.logging.Logger;
+import nc.ui.pub.ClientEnvironment;
 import nc.ui.scm.util.ObjectUtils;
 import nc.ui.xcgl.report.sumdayreport.RepSumClientUI;
+import nc.ui.zmpub.pub.tool.LongTimeTask;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
 import nc.vo.pub.lang.UFDouble;
@@ -61,32 +65,38 @@ public class DayReportTool {
 	 * 月合并字段
 	 */
 	public static String[] combinFields={"nwetnum","ndrynum","pb_noutnum",
-		"zn_noutnum","ptm_pb","ptm_zn","pbtm_ag","zn_noutnum","pbtm_pb",
-		"zntm_zn","pb_tmag"};
-	/**
-	 * 平均值条件
-	 */
-	public static String[] AverageConditions={"pk_corp","pk_factory","pk_beltline",
-		"pk_minarea","pk_oreinvmandoc","vmonth"}; 
-	/**
-	 * 平均值字段
-	 */
-	public static String[] AveragecombinFields={"ore_pb","ore_zn","ore_ag",
-		"pb_pb","pb_zn","pb_ag","zn_pb","zn_zn","pbt_pb",
-		"pbt_ag","znt_zn"};	
+		"ptm_pb","ptm_zn","ptm_ag","ptm_au","pbtm_pb","pbtm_zn","pbtm_ag","ptm_au","zn_noutnum",
+		"znm_zn","znm_pb","znm_ag","znm_au","zntm_zn","zntm_pb","zntm_ag","zntm_au","starhours"};
 	
     public static String[] formulas={
-    	"pb_pb_recrate->(pb_pb*ore_pb-pbt_pb )/(ore_pb*(pb_pb-pbt_pb)",
-    	"pb_ag_recrate->(pb_ag*ore_ag-pbt_ag )/(ore_ag*(pb_ag-pbt_ag)",
-    	"pb_noutnum->ndrynum*ore_pb*pb_pb_recrate/pb_pb",
-    	"ptm_pb->(ndrynum-pb_noutnum)*pbt_pb",
-    	"ptm_ag->(ndrynum-pb_noutnum)*pbt_ag",
-    	"ptm_pb->ndrynum*ore_pb-pbtm_pb",
-    	"ptm_ag->ndrynum*ore_ag-pbtm_ag",
-    	"zn_zn_recrate->((ore_zn-(pb_noutnum/ndrynum))*pb_zn-znt_zn)*zn_zn)/(ore_zn*(zn_zn-znt_zn))",
-    	"zn_noutnum->ndrynum*ore_zn*zn_zn_recrate/zn_zn",
-    	"zntm_zn->(ndrynum-pb_noutnum-zn_noutnum)*znt_zn",
-    	"znm_zn->ndrynum*ore_zn-pb_noutnum*pb_zn-zntm_zn",   	
+    	"nwater->(nwetnum-ndrynum)/nwetnum*100",
+    	"ore_pb->(ptm_pb+pbtm_pb)/ndrynum*100",
+    	"ore_zn->(ptm_zn+znm_zn+zntm_zn)/ndrynum*100",
+    	"ore_ag->(ptm_ag+pbtm_ag)/ndrynum",
+    	"pb_pb->(ptm_pb/pb_noutnum)*100",
+    	"pb_zn->(ptm_zn/pb_noutnum)*100",
+    	"pb_ag->(ptm_ag/pb_noutnum)",
+    	
+     	"zn_pb->(znm_pb/zn_noutnum)*100",
+    	"zn_zn->(znm_zn/zn_noutnum)*100",
+    	"zn_ag->(znm_ag/zn_noutnum)",
+    	
+     	"pbt_pb->(pbtm_pb/(ndrynum-pb_noutnum))*100",
+     	"pbt_ag->(pbtm_ag/(ndrynum-pb_noutnum))",
+     	"znt_zn->(zntm_zn/(ndrynum-pb_noutnum-zn_noutnum))*100",
+   	
+    	"pb_pb_recrate->(pb_pb*(ore_pb-pbt_pb))/(ore_pb*(pb_pb-pbt_pb))",
+    	"pb_ag_recrate->(pb_ag*(ore_ag-pbt_ag))/(ore_ag*(pb_ag-pbt_ag))",
+    	"zn_zn_recrate->((ore_zn-(pb_noutnum/ndrynum)*pb_zn-znt_zn)*zn_zn)/(ore_zn*(zn_zn-znt_zn))",
+//    	"pb_noutnum->ndrynum*ore_pb*pb_pb_recrate/pb_pb",
+//    	"ptm_pb->(ndrynum-pb_noutnum)*pbt_pb",
+//    	"ptm_ag->(ndrynum-pb_noutnum)*pbt_ag",s
+//    	"ptm_pb->ndrynum*ore_pb-pbtm_pb",
+//    	"ptm_ag->ndrynum*ore_ag-pbtm_ag",
+    	
+//    	"zn_noutnum->ndrynum*ore_zn*zn_zn_recrate/zn_zn",
+//    	"zntm_zn->(ndrynum-pb_noutnum-zn_noutnum)*znt_zn",
+//    	"znm_zn->ndrynum*ore_zn-pb_noutnum*pb_zn-zntm_zn",   	
     };
 	
 	public static ReportBaseVO[] getDealVO(ReportBaseVO[] vos) throws BusinessException {
@@ -296,80 +306,111 @@ public class DayReportTool {
 	}
 	
 	public static ReportBaseVO getYearVO(ReportBaseVO[] dvos) throws Exception {
-        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
-        //取得当月
-        UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
-	    UFDate sdate=getMonthStartDate(date);
+	    UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
+	    String firstday=ZmPubTool.getFirstDayOfYear(date.toString());		
 	    String sql=getMonthSql(dvos);   
-	    sql=sql+" and dbilldate >= '"+sdate.toString()+"' and dbilldate<='"+date.toString()+"' ";
-	    ReportBaseVO[] mvos=getReportVO(sql);	     
+	    sql=sql+" and h.dbilldate >= '"+firstday+"' and h.dbilldate<='"+date.toString()+"' ";
+		ReportBaseVO vo=dvos[0];
+		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
+		String wsql=getwhereSql(vo,monthmapkey);			
+		sql=sql+" and "+wsql;	
+	    ReportBaseVO[] mvos=getReportVO(sql);	    
 	    mvos=getDealVO(mvos);	
-	    setMonth(mvos);	    
-	    addVOtoList(list,mvos);	    
-	    //取当月所在年度
-	    List<String> mlist=getMonthsByYear(date);	   
-	    if(mlist!=null && mlist.size()>0){
-	    	for(int i=0;i<mlist.size();i++){
-	    		String month=mlist.get(i);
-	    		String msql=getSumMonthSql(dvos,month);
-	    	    ReportBaseVO[] rvos=getReportVO(msql);
-	    	    ReportBaseVO[] movos=getDealVO(rvos);	
-	    	    addVOtoList(list,movos);
-	    	}
-	    }	    
-	    ReportBaseVO[] qvos=list.toArray(new ReportBaseVO[0]);	    
-		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yearmapkey, RepSumClientUI.combinFields);		
-		ReportBaseVO[] avgvos=CombinVO.averageData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yearmapkey, RepSumClientUI.AveragecombinFields);				
-	    CombinVO.copyValueByContion(sumvos,avgvos, yearmapkey, RepSumClientUI.AveragecombinFields);		    
-		return sumvos[0];	
+	    setMonth(mvos);
+		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
+		return smvos[0];
+//        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
+//        //取得当月
+//        UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
+//	    UFDate sdate=getMonthStartDate(date);
+//	    String sql=getMonthSql(dvos);   
+//	    sql=sql+" and dbilldate >= '"+sdate.toString()+"' and dbilldate<='"+date.toString()+"' ";
+//	    ReportBaseVO[] mvos=getReportVO(sql);	     
+//	    mvos=getDealVO(mvos);	
+//	    setMonth(mvos);	    
+//	    addVOtoList(list,mvos);	    
+//	    //取当月所在年度
+//	    List<String> mlist=getMonthsByYear(date);	   
+//	    if(mlist!=null && mlist.size()>0){
+//	    	for(int i=0;i<mlist.size();i++){
+//	    		String month=mlist.get(i);
+//	    		String msql=getSumMonthSql(dvos,month);
+//	    	    ReportBaseVO[] rvos=getReportVO(msql);
+//	    	    ReportBaseVO[] movos=getDealVO(rvos);	
+//	    	    addVOtoList(list,movos);
+//	    	}
+//	    }	    
+//	    ReportBaseVO[] qvos=list.toArray(new ReportBaseVO[0]);	    
+//		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
+//				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yearmapkey, RepSumClientUI.combinFields);		
+//		ReportBaseVO[] avgvos=CombinVO.averageData(
+//				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yearmapkey, RepSumClientUI.AveragecombinFields);				
+//	    CombinVO.copyValueByContion(sumvos,avgvos, yearmapkey, RepSumClientUI.AveragecombinFields);		    
+//		return sumvos[0];	
 	}
 
 	public static ReportBaseVO getQuarterVO(ReportBaseVO[] dvos) throws Exception {
-        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
-	    //取得当月
-        UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
-	    UFDate sdate=getMonthStartDate(date);
+	    
+	    UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
+	    String firstday=ZmPubTool.getFirstDayOfQuarter(date.toString());		
 	    String sql=getMonthSql(dvos);   
-	    sql=sql+" and dbilldate >= '"+sdate.toString()+"' and dbilldate<='"+date.toString()+"' ";
+	    sql=sql+" and h.dbilldate >= '"+firstday+"' and h.dbilldate<='"+date.toString()+"' ";
+		ReportBaseVO vo=dvos[0];
+		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
+		String wsql=getwhereSql(vo,monthmapkey);			
+		sql=sql+" and "+wsql;	
 	    ReportBaseVO[] mvos=getReportVO(sql);	    
 	    mvos=getDealVO(mvos);	
-	    setMonth(mvos);	    
-	    addVOtoList(list,mvos);	    
-	    //取当月所在季度
-	    List<String> mlist=getMonthsByQuarter(date);	   
-	    if(mlist!=null && mlist.size()>0){
-	    	for(int i=0;i<mlist.size();i++){
-	    		String month=mlist.get(i);
-	    		String msql=getSumMonthSql(dvos,month);
-	    	    ReportBaseVO[] rvos=getReportVO(msql);
-	    	    ReportBaseVO[] movos=getDealVO(rvos);	
-	    	    addVOtoList(list,movos);
-	    	}
-	    }	    
-	    ReportBaseVO[] qvos=list.toArray(new ReportBaseVO[0]);	    
-		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yuartermapkey, RepSumClientUI.combinFields);		
-		ReportBaseVO[] avgvos=CombinVO.averageData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yuartermapkey, RepSumClientUI.AveragecombinFields);				
-	    CombinVO.copyValueByContion(sumvos,avgvos, yuartermapkey, RepSumClientUI.AveragecombinFields);		    
-		return sumvos[0];	
+	    setMonth(mvos);
+		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
+		return smvos[0];	
+	
+//        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
+//	    //取得当月
+//        UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
+//	    UFDate sdate=getMonthStartDate(date);
+//	    String sql=getMonthSql(dvos);   
+//	    sql=sql+" and dbilldate >= '"+sdate.toString()+"' and dbilldate<='"+date.toString()+"' ";
+//	    ReportBaseVO[] mvos=getReportVO(sql);	    
+//	    mvos=getDealVO(mvos);	
+//	    setMonth(mvos);	    
+//	    addVOtoList(list,mvos);	    
+//	    //取当月所在季度
+//	    List<String> mlist=getMonthsByQuarter(date);	   
+//	    if(mlist!=null && mlist.size()>0){
+//	    	for(int i=0;i<mlist.size();i++){
+//	    		String month=mlist.get(i);
+//	    		String msql=getSumMonthSql(dvos,month);
+//	    	    ReportBaseVO[] rvos=getReportVO(msql);
+//	    	    ReportBaseVO[] movos=getDealVO(rvos);	
+//	    	    addVOtoList(list,movos);
+//	    	}
+//	    }	    
+//	    ReportBaseVO[] qvos=list.toArray(new ReportBaseVO[0]);	    
+//		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
+//				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yuartermapkey, RepSumClientUI.combinFields);		
+//		ReportBaseVO[] avgvos=CombinVO.averageData(
+//				(ReportBaseVO[])ObjectUtils.serializableClone(qvos), yuartermapkey, RepSumClientUI.AveragecombinFields);				
+//	    CombinVO.copyValueByContion(sumvos,avgvos, yuartermapkey, RepSumClientUI.AveragecombinFields);		    
+//		return sumvos[0];	
 	}
 
 	public static ReportBaseVO getMonthReportVO(ReportBaseVO[] dvos) throws Exception {	    
 	    UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
 	    UFDate sdate=getMonthStartDate(date);
 	    String sql=getMonthSql(dvos);   
-	    sql=sql+" and dbilldate >= '"+sdate.toString()+"' and dbilldate<='"+date.toString()+"' ";
+	    sql=sql+" and h.dbilldate >= '"+sdate.toString()+"' and h.dbilldate<='"+date.toString()+"' ";
+		ReportBaseVO vo=dvos[0];
+		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
+		String wsql=getwhereSql(vo,monthmapkey);			
+		sql=sql+" and "+wsql;	
 	    ReportBaseVO[] mvos=getReportVO(sql);	    
 	    mvos=getDealVO(mvos);	
 	    setMonth(mvos);
 		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);		
-		ReportBaseVO[] dmvos=CombinVO.averageData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), AverageConditions, AveragecombinFields);				
-	    CombinVO.copyValueByContion(smvos,dmvos, AverageConditions, AveragecombinFields);		    
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
 		return smvos[0];	
 	}
 	
@@ -400,21 +441,37 @@ public class DayReportTool {
 		
 	}
 
-	public static ReportBaseVO[] getReportVO(String sql) {		
-		return getReportVO(sql);
-	}
 
-	public static String getMonthSql(ReportBaseVO[] dvos) {
+
+	public static ReportBaseVO[] getReportVO(String sql) throws BusinessException {
+		 ReportBaseVO[] reportVOs = null;
 		
-		ReportBaseVO vo=dvos[0];
-		String wsql=getwhereSql(vo,monthmapkey);		
-		return ReportSql.getBaseSql(wsql);
+	        try{
+	//        	this.sql=sql;
+	            Class[] ParameterTypes = new Class[]{String.class};
+	            Object[] ParameterValues = new Object[]{sql};
+	            Object o = LongTimeTask.calllongTimeService(
+						"zmpub", null, "正在查询...", 1,
+						"nc.bs.zmpub.pub.report.ReportDMO", null, "queryVOBySql",
+						ParameterTypes, ParameterValues);
+	            if(o != null){
+	                reportVOs = (ReportBaseVO[])o;
+	            }
+	        }catch(Exception e){
+	            Logger.error(e);
+//	            MessageDialog.showErrorDlg(this, "警告", e.getMessage());
+	        }
+	        return reportVOs;
+	}
+	
+	public static String getMonthSql(ReportBaseVO[] dvos) {			
+		return ReportSql.getBaseSql( "1=1" );
 	}
 	
 	private static String getwhereSql(ReportBaseVO vo, String[] monthmapkey) {
-		String wql=" ";		
+		String wql=" 1=1 ";		
 		for(int i=0;i<monthmapkey.length;i++){
-			wql=wql+" and  "+monthmapkey[i]+"='"+vo.getAttributeValue(monthmapkey[i])+"' ";
+			wql=wql+" and  h."+monthmapkey[i]+"='"+vo.getAttributeValue(monthmapkey[i])+"' ";
 		}		
 		return wql;
 	}
@@ -477,10 +534,10 @@ public class DayReportTool {
 	
 	public static ReportBaseVO getDayReportVO(ReportBaseVO[] dvos) throws Exception {
 		ReportBaseVO[] sumvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(dvos), daymapkey, RepSumClientUI.combinFields);		
-		ReportBaseVO[] avgvos=CombinVO.averageData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(dvos), daymapkey, RepSumClientUI.AveragecombinFields);				
-	    CombinVO.copyValueByContion(sumvos,avgvos, daymapkey, RepSumClientUI.AveragecombinFields);			
+				(ReportBaseVO[])ObjectUtils.serializableClone(dvos), daymapkey, combinFields);		
+//		ReportBaseVO[] avgvos=CombinVO.averageData(
+//				(ReportBaseVO[])ObjectUtils.serializableClone(dvos), daymapkey, RepSumClientUI.AveragecombinFields);				
+//	    CombinVO.copyValueByContion(sumvos,avgvos, daymapkey, RepSumClientUI.AveragecombinFields);			
 		return sumvos[0];
 	}
 }
