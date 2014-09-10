@@ -114,41 +114,76 @@ public class DayReportTool {
 	private static void dealZnTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Pb_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
+		UFDouble Aggrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Ag_index);
+		UFDouble Augrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Au_index);
+
+
 	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,);
 		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Zn_index);
-    	//zn_noutnum,zn_pb, zn_zn
+		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Pb_index);
+		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Ag_index);
+		UFDouble Aunoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Zn_tail,DayReportConst.Au_index);
+
+		//zn_noutnum,zn_pb, zn_zn
         vo.setAttributeValue("znt_pb", Pbgrade);
 	    vo.setAttributeValue("znt_zn", Zngrade);
-	 //   vo.setAttributeValue("znt_noutnum", noutnum);
+	    vo.setAttributeValue("znt_ag", Aggrade);
+	    vo.setAttributeValue("znt_au", Augrade);
+	 // vo.setAttributeValue("znt_noutnum", noutnum);
 	    vo.setAttributeValue("zntm_zn", Znnoutmetalnum);
+	    vo.setAttributeValue("zntm_pb", Pbnoutmetalnum);
+	    vo.setAttributeValue("zntm_ag", Agnoutmetalnum);
+	    vo.setAttributeValue("zntm_au", Aunoutmetalnum);
 	}
 
 	private static void dealPbTail(ReportBaseVO vo, ReportBaseVO[] bvos) {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Zn_index);
+		UFDouble Augrade=getGrade(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Au_index);
+
 	//	UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Pb_index);
 		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Ag_index);
-        vo.setAttributeValue("pbt_pb", Pbgrade);
+		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Zn_index);
+		UFDouble Aunoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_tail,DayReportConst.Pb_tail,DayReportConst.Au_index);
+
+		vo.setAttributeValue("pbt_pb", Pbgrade);
 	    vo.setAttributeValue("pbt_ag", Aggrade);
 	    vo.setAttributeValue("pbt_zn", Zngrade);
+	    vo.setAttributeValue("pbt_au", Augrade);
   //    vo.setAttributeValue("pbt_noutnum", noutnum);
 	    vo.setAttributeValue("pbtm_pb", Pbnoutmetalnum);
 	    vo.setAttributeValue("pbtm_ag", Agnoutmetalnum);
+	    vo.setAttributeValue("pbtm_zn", Znnoutmetalnum);
+	    vo.setAttributeValue("pbtm_au", Aunoutmetalnum);
+
 	}
 
 	private static void dealZnPower(ReportBaseVO vo, ReportBaseVO[] bvos) {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Pb_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
+		UFDouble Aggrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Ag_index);
+		UFDouble Augrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Au_index);
+
+		
 		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
 		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
-        UFDouble Znrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
+		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Pb_index);
+		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Ag_index);
+		UFDouble Aunoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Au_index);
+
+		UFDouble Znrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Zn_power,DayReportConst.Zn_index);
     	//zn_noutnum,zn_pb, zn_zn
         vo.setAttributeValue("zn_pb", Pbgrade);
 	    vo.setAttributeValue("zn_zn", Zngrade);
+	    vo.setAttributeValue("zn_ag", Aggrade);
+	    vo.setAttributeValue("zn_au", Augrade);
 	    vo.setAttributeValue("zn_noutnum", noutnum);
 	    vo.setAttributeValue("znm_zn", Znnoutmetalnum);
+	    vo.setAttributeValue("znm_pb", Pbnoutmetalnum);
+	    vo.setAttributeValue("znm_ag", Agnoutmetalnum);
+	    vo.setAttributeValue("znm_au", Aunoutmetalnum);
 	    vo.setAttributeValue("zn_zn_recrate", Znrecrate);
 	}
 
@@ -156,20 +191,32 @@ public class DayReportTool {
 	    UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 	    UFDouble Aggrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
 		UFDouble Zngrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Zn_index);
+		UFDouble Augrade=getGrade(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Au_index);
+
 		UFDouble noutnum=getNoutNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 		UFDouble Pbnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
 		UFDouble Agnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
-        UFDouble Pbrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
+		UFDouble Znnoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Zn_index);
+		UFDouble Aunoutmetalnum=getNoutMetalNum(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Au_index);
+
+		UFDouble Pbrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Pb_index);
         UFDouble Agrecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Ag_index);
+        UFDouble Aurecrate=getNRecRate(bvos,DayReportConst.type_power,DayReportConst.Pb_power,DayReportConst.Au_index);
+
     	//pb_noutnum,pb_pb,pb_zn,pb_ag
         vo.setAttributeValue("pb_pb", Pbgrade);
 	    vo.setAttributeValue("pb_ag", Aggrade);
 	    vo.setAttributeValue("pb_zn", Zngrade);
+	    vo.setAttributeValue("pb_au", Augrade);
+	    
 	    vo.setAttributeValue("pb_noutnum", noutnum);
 	    vo.setAttributeValue("ptm_pb", Pbnoutmetalnum);
 	    vo.setAttributeValue("ptm_ag", Agnoutmetalnum);
+	    vo.setAttributeValue("ptm_zn", Znnoutmetalnum);
+	    vo.setAttributeValue("ptm_au", Aunoutmetalnum);
 	    vo.setAttributeValue("pb_pb_recrate", Pbrecrate);
 	    vo.setAttributeValue("pb_ag_recrate", Agrecrate);
+	    vo.setAttributeValue("pb_au_recrate", Aurecrate);
 	}
 
 	public static UFDouble getNRecRate(ReportBaseVO[] bvos, String type_power,
@@ -236,9 +283,11 @@ public class DayReportTool {
 			 UFDouble Pbgrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Pb_index);
 		     UFDouble Aggrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Ag_index);
 			 UFDouble Zngrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Zn_index);
+			 UFDouble Augrade=getGrade(bvos,DayReportConst.type_ore,null,DayReportConst.Au_index);
 			 vo.setAttributeValue("ore_pb", Pbgrade);
 			 vo.setAttributeValue("ore_ag", Aggrade);
 			 vo.setAttributeValue("ore_zn", Zngrade);
+			 vo.setAttributeValue("ore_au", Augrade);
 			 return vo;
 		} catch (Exception e) {
 			e.printStackTrace();

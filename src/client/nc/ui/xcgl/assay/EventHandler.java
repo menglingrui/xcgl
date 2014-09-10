@@ -43,6 +43,14 @@ public class EventHandler extends XCFlowManageEventHandler{
 		super.onBoSave();
 		super.onBoRefresh();
 	}
+	
+	/**
+	 * 按钮m_boEdit点击时执行的动作,如有必要，请覆盖.
+	 */
+	protected void onBoEdit() throws Exception {
+		super.onBoEdit2();
+	
+	}
 	@Override
 	protected void onBoElse(int intBtn) throws Exception {
 		if(getBillUI() instanceof XCSonDefBillManageUI){
@@ -50,7 +58,20 @@ public class EventHandler extends XCFlowManageEventHandler{
 				 quotaQuery();
 			 }
 		}
+		switch(intBtn){
+		case PuBtnConst.revise:
+			onBoEdit1();
+			break;
+		}
 		super.onBoElse(intBtn);
+	}
+	/**
+	 * 暂时没有执行任何操作
+	 * 按钮m_boEdit点击时执行的动作,如有必要，请覆盖.
+	 */
+	protected void onBoEdit1() throws Exception {		
+		super.onBoEdit1();
+		getBillCardPanel().getHeadItem("ureserve10").setValue(true);
 	}
 	/**
 	 * 查看孙表明细

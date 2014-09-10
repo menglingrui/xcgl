@@ -2,13 +2,16 @@ package nc.ui.xcgl.saleassay;
 
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.bill.BillItemEvent;
+import nc.ui.trade.base.IBillOperate;
 import nc.ui.trade.bill.AbstractManageController;
 import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.manage.ManageEventHandler;
 import nc.ui.xcgl.pub.bill.XCDefBillManageUI;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.CircularlyAccessibleValueObject;
+import nc.vo.trade.button.ButtonVO;
 import nc.vo.trade.pub.IBillStatus;
+import nc.vo.xcgl.pub.consts.PuBtnConst;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 
 /**
@@ -172,6 +175,23 @@ public class ClientUI extends XCDefBillManageUI{
 //			return list;
 //		}
 //	}
+	protected void initPrivateButton() {
+		
+		ButtonVO btnvo3 = new ButtonVO();
+		btnvo3.setBtnNo(PuBtnConst.revise);
+		btnvo3.setBtnName("修订");
+		btnvo3.setBtnChinaName("修订");
+		btnvo3.setBtnCode(null);//code最好设置为空
+		btnvo3.setOperateStatus(new int[]{
+				IBillOperate.OP_NOTEDIT,
+				});
+		btnvo3.setBusinessStatus(new int[]{
+				IBillStatus.CHECKPASS,
+		});
+		addPrivateButton(btnvo3);
+		
+		super.initPrivateButton();
+	}
 
 	@Override
 	public boolean isStockBill() {

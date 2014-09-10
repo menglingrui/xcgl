@@ -1,6 +1,7 @@
 package nc.ui.xcgl.weighcount;
 
 import nc.ui.pub.ClientEnvironment;
+import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 
 /**
  * ¹ý°õÍ³¼Æ
@@ -36,7 +37,9 @@ public class ReportSql {
 		sb.append("xcgl_weighdoc_b.nnetweight,");
 		sb.append("xcgl_weighdoc_b.nwatercontent,");
 		sb.append("xcgl_weighdoc_b.ndryamount,");
-		sb.append("xcgl_weighdoc_b.pk_vehicle ");
+		sb.append("xcgl_weighdoc_b.pk_vehicle, ");
+		sb.append("xcgl_weighdoc_b.*, ");
+		sb.append("xcgl_weighdoc.* ");
 		// sb.append("b.ndryweight,");
 		// sb.append("b.nlock,");
 		// sb.append("b.crowno,");
@@ -54,9 +57,11 @@ public class ReportSql {
 			sb.append(" and ");
 			sb.append(whereSql);
 		}
-		sb.append("and xcgl_weighdoc.pk_corp='"
+		sb.append(" and xcgl_weighdoc.pk_corp='"
 				+ ClientEnvironment.getInstance().getCorporation()
-						.getPrimaryKey() + "'");
+						.getPrimaryKey() + "' ");
+		sb.append(" and isnull(xcgl_weighdoc.dr,0)=0 and  isnull(xcgl_weighdoc_b.dr,0)=0");
+		sb.append(" and xcgl_weighdoc.pk_billtype='"+PubBillTypeConst.billtype_weighdoc+"'");
 		return sb.toString();
 	}
 }

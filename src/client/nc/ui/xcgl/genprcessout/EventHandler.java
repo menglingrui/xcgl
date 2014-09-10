@@ -95,7 +95,7 @@ public class EventHandler extends XCFlowManageEventHandler{
 						getUIController().getBillType(), _getDate().toString(),
 						getBillUI().getUserObject(), checkVO);
 		}
-        String errmsg=(String) billvo.getParentVO().getAttributeValue("errmsg");
+        String errmsg=(String) billVO.getParentVO().getAttributeValue("errmsg");
 		// 进行数据恢复处理
 		if (sCtrl != null) {
 			if (sCtrl.isSingleDetail())
@@ -133,7 +133,7 @@ public class EventHandler extends XCFlowManageEventHandler{
 		}
 		super.onBoRefresh();
 		if(errmsg!=null && errmsg.length()>0){
-			getBillUI().showHintMessage(errmsg);
+			getBillUI().showErrorMessage(errmsg);
 		}
 		
 	}

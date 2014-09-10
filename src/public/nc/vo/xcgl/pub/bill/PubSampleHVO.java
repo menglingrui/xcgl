@@ -89,7 +89,17 @@ public abstract class PubSampleHVO extends XCHYHeadSuperVO{
 	 * ISRESEL
 	 */
 	private UFBoolean isresel;
+	/**
+	 *  «∑Ò–ﬁ∂©
+	 */
+	public UFBoolean ureserve10;
 	
+	public UFBoolean getUreserve10() {
+		return ureserve10;
+	}
+	public void setUreserve10(UFBoolean ureserve10) {
+		this.ureserve10 = ureserve10;
+	}
 	public UFBoolean getIsresel() {
 		return isresel;
 	}

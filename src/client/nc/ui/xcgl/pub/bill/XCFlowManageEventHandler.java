@@ -130,6 +130,16 @@ public class XCFlowManageEventHandler extends FlowManageEventHandler {
 		}
 		super.onBoEdit();
 	}
+	
+	protected void onBoEdit2() throws Exception {
+		UFDate dbilldate = PuPubVO.getUFDate(getBufferData().getCurrentVO()
+				.getParentVO().getAttributeValue("dbilldate"));
+		if (MonthCloseHelper.isMonthClose(dbilldate, pk_corp).booleanValue()) {
+			getBillUI().showErrorMessage("当前单据日期已经关账");
+			return;
+		}
+		super.onBoEdit2();
+	}
 
 	/**
 	 * 按钮m_boEdit点击时执行的动作,如有必要，请覆盖.

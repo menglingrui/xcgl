@@ -6,6 +6,7 @@ import nc.ui.trade.button.IBillButton;
 import nc.vo.xcgl.assay.AggassayVO;
 import nc.vo.xcgl.assay.AssayBVO;
 import nc.vo.xcgl.assay.AssayHVO;
+import nc.vo.xcgl.pub.consts.PuBtnConst;
 import nc.vo.xcgl.pub.consts.PubBillTypeConst;
 import nc.vo.zmpub.pub.consts.ZmpubBtnConst;
 /**
@@ -31,6 +32,7 @@ public class Controller extends AbstractManageController{
 				IBillButton.Cancel,	    //取消
 				IBillButton.Commit,     //提交
 				IBillButton.Action,	    //执行
+			//	PuBtnConst.revise,
 				IBillButton.Delete,     //删除	
 				IBillButton.Refresh,  	//刷新
 //				PuBtnConst.ckmx,
@@ -112,6 +114,7 @@ public class Controller extends AbstractManageController{
 				IBillButton.Cancel,	    //取消
 				IBillButton.Commit,     //提交
 				IBillButton.Action,	    //执行
+		//		PuBtnConst.revise,
 				IBillButton.Delete,     //删除	
 				IBillButton.Refresh,  	//刷新		 
 //				PuBtnConst.ckmx,
@@ -130,6 +133,6 @@ public class Controller extends AbstractManageController{
 	}
 
 	public boolean isShowListTotal() {
-		return false;
+		return true;
 	}
 }

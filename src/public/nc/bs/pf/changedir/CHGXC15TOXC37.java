@@ -12,7 +12,7 @@ public class CHGXC15TOXC37 extends  nc.bs.pf.change.VOConversion{
 			"B_pk_corp->H_pk_corp",
 			"B_pk_invmandoc->B_pk_invmandoc",
 			"B_pk_invbasdoc->B_pk_invbasdoc",
-			"B_nnum->B_ndryweight",
+			"B_nnum->B_nwetweight",
 			"B_pk_father->B_pk_father",
 			"B_vdef1->H_pk_minarea",//╡©це
 		};

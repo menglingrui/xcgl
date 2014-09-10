@@ -8,6 +8,7 @@ import nc.ui.pub.ClientEnvironment;
 import nc.ui.pub.bill.BillEditEvent;
 import nc.ui.pub.bill.BillItem;
 import nc.ui.pub.bill.BillItemEvent;
+import nc.ui.trade.base.IBillOperate;
 import nc.ui.trade.bill.AbstractManageController;
 import nc.ui.trade.business.HYPubBO_Client;
 import nc.ui.trade.button.IBillButton;
@@ -149,8 +150,23 @@ public class ClientUI extends XCSonDefBillManageUI {
 		btnvo1.setBtnChinaName(getQueryDetailBtnName());
 		btnvo1.setBtnCode(null);//code最好设置为空
 		addPrivateButton(btnvo1);
+		
+		ButtonVO btnvo3 = new ButtonVO();
+		btnvo3.setBtnNo(PuBtnConst.revise);
+		btnvo3.setBtnName("修订");
+		btnvo3.setBtnChinaName("修订");
+		btnvo3.setBtnCode(null);//code最好设置为空
+		btnvo3.setOperateStatus(new int[]{
+				IBillOperate.OP_NOTEDIT,
+				});
+		btnvo3.setBusinessStatus(new int[]{
+				IBillStatus.CHECKPASS,
+		});
+		addPrivateButton(btnvo3);
 		super.initPrivateButton();
 	}
+	
+
 	
 	@Override
 	  public String getRefBillType(){

@@ -494,7 +494,7 @@ public class ProduceSetHelper {
 		}
 		outlist=getAllTailsProOutSetInfor(para);//所有的产出信息(尾矿)
 		if(outlist==null||outlist.size()==0){
-			throw new BusinessException("获得产出信息为空     ");
+			throw new BusinessException("获得尾矿信息为空");
 		}
 		for(int i=0;i<outlist.size();i++){
 			ProductSetBB2VO bb2vo=outlist.get(i);
@@ -544,7 +544,7 @@ public class ProduceSetHelper {
 		}
 		outlist=getAllTailsProOutSetInfor(para);//所有的产出信息(尾矿)
 		if(outlist==null||outlist.size()==0){
-			throw new BusinessException("获得产出信息为空");
+			throw new BusinessException("获得尾矿信息为空");
 		}
 		for(int i=0;i<outlist.size();i++){
 			ProductSetBB2VO bb2vo=outlist.get(i);
@@ -594,7 +594,7 @@ public class ProduceSetHelper {
 		}
 		outlist=getAllTailsProOutSetInfor(para);//所有的产出信息(尾矿)
 		if(outlist==null||outlist.size()==0){
-			throw new BusinessException("获得产出信息为空");
+			throw new BusinessException("获得尾矿信息为空");
 		}
 		for(int i=0;i<outlist.size();i++){
 			ProductSetBB2VO bb2vo=outlist.get(i);

@@ -33,6 +33,8 @@ public class ClientUI extends XCBillCardUI{
 	protected void initSelfData() {
 		
 	}
+	
+	
 
 	@Override
 	public void setDefaultData() throws Exception {

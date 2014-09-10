@@ -35,11 +35,11 @@ public class Controller extends AbstractManageController{
 	}
 
 	public boolean isShowCardRowNo() {
-		return false;
+		return true;
 	}
 
 	public boolean isShowCardTotal() {
-		return false;
+		return true;
 	}
 
 	public String getBillType() {

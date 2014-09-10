@@ -45,9 +45,9 @@ public class CHGXC15TO4D  extends VOConversion {
 //				"B_ninnum->B_ndryweight",//实发数量
 				
 //				"B_nshouldoutassistnum->B_nassnum",//应发辅数量
-				"B_nshouldoutnum->B_ndryweight",//应发数量 
+				"B_nshouldoutnum->B_nwetweight",//应发数量 
 //				"B_noutassistnum->B_nassnum",//实发辅数量
-				"B_noutnum->B_ndryweight",//实发数量
+				"B_noutnum->B_nwetweight",//实发数量
 //				"B_nprice->B_nprice",//单价
 //				"B_nmny->B_nmny",//金额	
 //				"B_vbatchcode->B_vbatchcode",//批次号

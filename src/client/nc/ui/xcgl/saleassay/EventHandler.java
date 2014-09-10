@@ -49,6 +49,19 @@ public class EventHandler extends XCFlowManageEventHandler{
 			 }
 		}
 		super.onBoElse(intBtn);
+		switch(intBtn){
+		case PuBtnConst.revise:
+			onBoEdit1();
+			break;
+		}
+	}	
+	/**
+	 * 暂时没有执行任何操作
+	 * 按钮m_boEdit点击时执行的动作,如有必要，请覆盖.
+	 */
+	protected void onBoEdit1() throws Exception {		
+		super.onBoEdit1();
+		getBillCardPanel().getHeadItem("ureserve10").setValue(true);
 	}
 	/**
 	 * 查看孙表明细
@@ -85,6 +98,13 @@ public class EventHandler extends XCFlowManageEventHandler{
 					.getButton(IBillButton.Refbill);
 			btn.setTag(String.valueOf(IBillButton.Refbill));
 		}
+	}
+	/**
+	 * 按钮m_boEdit点击时执行的动作,如有必要，请覆盖.
+	 */
+	protected void onBoEdit() throws Exception {
+		super.onBoEdit();
+	
 	}
 	/**
 	 * 增行为样品编码赋值；
