@@ -38,6 +38,11 @@ public class DayReportTool {
         "pk_minarea","pk_oreinvmandoc","vreserve1"};
 	
 	/**
+	 * metal月累计
+	 */
+	public static String[] monthmetalmapkey={"pk_corp","pk_factory","pk_minarea"};
+	
+	/**
 	 * 月累计sum
 	 */
 	public static String[] monthsummapkey={"pk_corp","pk_factory","pk_beltline",
@@ -60,6 +65,11 @@ public class DayReportTool {
 	 */
 	public static String[] combinConditions={"pk_corp","pk_factory","pk_beltline",
 		"pk_minarea","pk_oreinvmandoc","vmonth"};
+	
+	/**
+	 * metal月合并条件
+	 */
+	public static String[] combinMetalConditions={"pk_corp","pk_factory","pk_minarea"};
 	/**
 	 * 月合并字段
 	 */
@@ -86,17 +96,26 @@ public class DayReportTool {
    	
     	"pb_pb_recrate->(pb_pb*(ore_pb-pbt_pb))/(ore_pb*(pb_pb-pbt_pb))",
     	"pb_ag_recrate->(pb_ag*(ore_ag-pbt_ag))/(ore_ag*(pb_ag-pbt_ag))",
-    	"zn_zn_recrate->((ore_zn-(pb_noutnum/ndrynum)*pb_zn-znt_zn)*zn_zn)/(ore_zn*(zn_zn-znt_zn))",
-//    	"pb_noutnum->ndrynum*ore_pb*pb_pb_recrate/pb_pb",
-//    	"ptm_pb->(ndrynum-pb_noutnum)*pbt_pb",
-//    	"ptm_ag->(ndrynum-pb_noutnum)*pbt_ag",s
-//    	"ptm_pb->ndrynum*ore_pb-pbtm_pb",
-//    	"ptm_ag->ndrynum*ore_ag-pbtm_ag",
-    	
-//    	"zn_noutnum->ndrynum*ore_zn*zn_zn_recrate/zn_zn",
-//    	"zntm_zn->(ndrynum-pb_noutnum-zn_noutnum)*znt_zn",
-//    	"znm_zn->ndrynum*ore_zn-pb_noutnum*pb_zn-zntm_zn",   	
+    	"zn_zn_recrate->((ore_zn-(pb_noutnum/ndrynum)*pb_zn-znt_zn)*zn_zn)/(ore_zn*(zn_zn-znt_zn))", 	
     };
+    
+    public static String[] formulas1={
+//g_pb_month  g_pb_quarter g_pb_year 
+//g_zn_month  g_zn_quarter g_zn_year 
+//g_ag_month  g_ag_quarter g_ag_year
+    	"g_pb_month->(m_pb_month/num_month)*100",
+    	"g_pb_quarter->(m_pb_quarter/num_quarter)*100",
+    	"g_pb_year->(m_pb_year/num_year)*100",
+    	
+    	"g_zn_month->(m_zn_month/num_month)*100",
+    	"g_zn_quarter->(m_zn_quarter/num_quarter)*100",
+    	"g_zn_year->(m_zn_year/num_year)*100",
+    	
+    	"g_ag_month->(m_ag_month/num_month)*100",
+    	"g_ag_quarter->(m_ag_quarter/num_quarter)*100",
+    	"g_ag_year->(m_ag_year/num_year)*100",
+    };
+    
 	
 	public static ReportBaseVO[] getDealVO(ReportBaseVO[] vos) throws BusinessException {
 		if(vos==null || vos.length==0){
@@ -311,13 +330,13 @@ public class DayReportTool {
 	    sql=sql+" and h.dbilldate >= '"+firstday+"' and h.dbilldate<='"+date.toString()+"' ";
 		ReportBaseVO vo=dvos[0];
 		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
-		String wsql=getwhereSql(vo,monthmapkey);			
+		String wsql=getwhereSql(vo,monthmetalmapkey);			
 		sql=sql+" and "+wsql;	
 	    ReportBaseVO[] mvos=getReportVO(sql);	    
 	    mvos=getDealVO(mvos);	
 	    setMonth(mvos);
 		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinMetalConditions, combinFields);			    
 		return smvos[0];
 //        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
 //        //取得当月
@@ -357,13 +376,13 @@ public class DayReportTool {
 	    sql=sql+" and h.dbilldate >= '"+firstday+"' and h.dbilldate<='"+date.toString()+"' ";
 		ReportBaseVO vo=dvos[0];
 		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
-		String wsql=getwhereSql(vo,monthmapkey);			
+		String wsql=getwhereSql(vo,monthmetalmapkey);			
 		sql=sql+" and "+wsql;	
 	    ReportBaseVO[] mvos=getReportVO(sql);	    
 	    mvos=getDealVO(mvos);	
 	    setMonth(mvos);
 		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
-				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinMetalConditions, combinFields);			    
 		return smvos[0];	
 	
 //        List<ReportBaseVO> list=new ArrayList<ReportBaseVO>();		
@@ -410,6 +429,23 @@ public class DayReportTool {
 	    setMonth(mvos);
 		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
 				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinConditions, combinFields);			    
+		return smvos[0];	
+	}
+	
+	public static ReportBaseVO getMonthMetalReportVO(ReportBaseVO[] dvos) throws Exception {	    
+	    UFDate date=PuPubVO.getUFDate(dvos[0].getAttributeValue("dbilldate"));
+	    UFDate sdate=getMonthStartDate(date);
+	    String sql=getMonthSql(dvos);   
+	    sql=sql+" and h.dbilldate >= '"+sdate.toString()+"' and h.dbilldate<='"+date.toString()+"' ";
+		ReportBaseVO vo=dvos[0];
+		vo.setAttributeValue("pk_corp", ClientEnvironment.getInstance().getCorporation().getPk_corp());
+		String wsql=getwhereSql(vo,monthmetalmapkey);			
+		sql=sql+" and "+wsql;	
+	    ReportBaseVO[] mvos=getReportVO(sql);	    
+	    mvos=getDealVO(mvos);	
+	    setMonth(mvos);
+		ReportBaseVO[] smvos=(ReportBaseVO[]) CombinVO.combinData(
+				(ReportBaseVO[])ObjectUtils.serializableClone(mvos), combinMetalConditions, combinFields);			    
 		return smvos[0];	
 	}
 	
