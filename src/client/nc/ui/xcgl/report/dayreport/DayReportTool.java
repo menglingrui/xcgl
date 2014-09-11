@@ -8,7 +8,6 @@ import nc.bd.accperiod.InvalidAccperiodExcetion;
 import nc.bs.logging.Logger;
 import nc.ui.pub.ClientEnvironment;
 import nc.ui.scm.util.ObjectUtils;
-import nc.ui.xcgl.report.sumdayreport.RepSumClientUI;
 import nc.ui.zmpub.pub.tool.LongTimeTask;
 import nc.vo.pub.BusinessException;
 import nc.vo.pub.lang.UFDate;
