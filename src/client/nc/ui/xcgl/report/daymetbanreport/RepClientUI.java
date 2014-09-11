@@ -1,10 +1,7 @@
 package nc.ui.xcgl.report.daymetbanreport;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.table.TableColumnModel;
-
 import nc.ui.pub.beans.UITable;
 import nc.ui.pub.beans.table.ColumnGroup;
 import nc.ui.pub.beans.table.GroupableTableHeader;
