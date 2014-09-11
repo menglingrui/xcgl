@@ -88,9 +88,9 @@ public class RepClientUI extends ZmReportBaseUI3 {
         GroupableTableHeader cardHeader = (GroupableTableHeader) cardTable.getTableHeader();
         TableColumnModel cardTcm = cardTable.getColumnModel();
     
-//        cardTable.getColumnName(6);
-//        getReportBase().getBillModel().getColumnName(6);
-//        getReportBase().getBillModel().getItemByKey("nwetnum").getIDColName();
+//      cardTable.getColumnName(6);
+//      getReportBase().getBillModel().getColumnName(6);
+//      getReportBase().getBillModel().getItemByKey("nwetnum").getIDColName();
         ColumnGroup oregroup= new ColumnGroup("原矿");
 //pk_factory，pk_classorder，starhours,pk_oreinvmandoc,nwetnum,     nwater,  ,ndrynum    ,ore_pb,ore_zn,ore_ag
         oregroup.add(cardTcm.getColumn(getColumnIndexByCode("nwetnum")));
@@ -127,7 +127,6 @@ public class RepClientUI extends ZmReportBaseUI3 {
         oregroup12.add(cardTcm.getColumn(getColumnIndexByCode("zn_au")));  
         oregroup1.add(oregroup12);       
         cardHeader.addColumnGroup(oregroup1);
- 
         
         ColumnGroup oregroup2= new ColumnGroup("铅尾矿");
     	//Pb(%),Ag(g/t)------->铅尾矿品位
@@ -139,8 +138,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
         //add
         oregroup2.add(cardTcm.getColumn(getColumnIndexByCode("pbt_au")));       
         cardHeader.addColumnGroup(oregroup2);
-    
-        
+            
         ColumnGroup oregroup21= new ColumnGroup("锌尾矿");
     	//Zn(%)---->锌尾
     	//znt_zn
@@ -160,8 +158,7 @@ public class RepClientUI extends ZmReportBaseUI3 {
         //add
         oregroup3.add(cardTcm.getColumn(getColumnIndexByCode("pb_au_recrate")));
         cardHeader.addColumnGroup(oregroup3);
-        
-        
+                
         ColumnGroup oregroup4= new ColumnGroup("精粉金属量");        
         ColumnGroup oregroup41= new ColumnGroup("铅精粉金属量");
     	//Pb(t) ,Zn(t) ,Ag(kg)---->铅精粉金属量
